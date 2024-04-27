@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Repositoryinterface\UsersRepositoryinterface;
+use App\Repositoryinterface\QuestionRepositoryinterface;
+use App\Repository\DBQuestionRepository;
 use App\Repository\DBUsersRepository;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $repositories = [
             UsersRepositoryinterface::class          => DBUsersRepository::class,
+            QuestionRepositoryinterface::class          => DBQuestionRepository::class,
 
         ];
 

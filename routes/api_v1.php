@@ -19,3 +19,7 @@ Route::controller(CityController::class)->group(function () {
     Route::get('city', 'city')->name('login');
     Route::get('area', 'area')->name('login');
 });
+Route::controller(CityController::class)->group(function () {
+    Route::get('city', 'city')->name('login');
+    Route::get('area', 'area')->name('login');
+});

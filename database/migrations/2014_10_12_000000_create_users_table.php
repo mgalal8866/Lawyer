@@ -19,8 +19,8 @@ return new class extends Migration
             $table->integer('city_id');
             $table->integer('area_id');
             $table->boolean('type')->default(0);
-            $table->decimal('wallet',8,2)->default(0);
-            $table->bigInteger('specialist')->nullable();
+            $table->decimal('point')->default(0);
+            $table->bigInteger('specialist_id')->nullable();
             $table->boolean('active')->default(1);
             $table->rememberToken();
             $table->timestamps();

@@ -28,8 +28,8 @@ class DBUsersRepository implements UsersRepositoryinterface
             'phone' => $data['phone'],
             'password' =>  $data['password'],
         ];
-        if ($token = Auth::guard('student')->attempt($credentials)) {
-            $user = auth('student')->user();
+        if ($token = Auth::guard('api')->attempt($credentials)) {
+            $user = auth('api')->user();
         } else {
             return Resp('', 'Invalid Credentials', 404, false);
         }
@@ -37,7 +37,7 @@ class DBUsersRepository implements UsersRepositoryinterface
         if ($token == null) {
             return Resp('', 'User Not found', 404, false);
         }
-        // $user =  auth('student')->user();
+        // $user =  auth('api')->user();
         $user->token = $token;
         $data =  new LoginUserResource($user);
         return Resp($data, 'Success', 200, true);
@@ -62,14 +62,20 @@ class DBUsersRepository implements UsersRepositoryinterface
     {
 
         $user =  User::create([
-            'first_name'   => $request->first_name,
-            'middle_name'  => $request->middle_name,
-            'last_name'    => $request->last_name,
-            'password'     => $request->password,
-            'phone'        => $request->phone,
-            'gender'       => $request->gender,
-            'country_id'   => $request->country_id,
+            'name'       => $request->name,
+            'phone'      => $request->phone,
+            'password'   => $request->password,
+            'type'       => $request->type,
+            'gender'     => $request->gender,
+            'specialist_id' => $request->specialist_id,
+            'city_id'    => $request->city_id,
+            'area_id'    => $request->area_id,
         ]);
+        if($request->image){
+
+            $user->image = '';
+            $user->save();
+        }
         if ($user != null) {
 
             return $this->login($request);
@@ -79,30 +85,13 @@ class DBUsersRepository implements UsersRepositoryinterface
     public function profile_update($request)
     {
 
-        $id = Auth::guard('student')->user()->id;
+        $id = Auth::guard('api')->user()->id;
         $user =  User::find($id);
 
-        if ($this->request->has('first_name')) {
-            $user->first_name = $request->first_name;
+        if ($this->request->has('name')) {
+            $user->name = $request->name;
         }
-        if ($this->request->has('middle_name')) {
-            $user->middle_name = $request->middle_name;
-        }
-        if ($this->request->has('last_name')) {
-            $user->last_name = $request->last_name;
-        }
-        if ($this->request->has('country_id')) {
-            $user->country_id = $request->country_id;
-        }
-        if ($this->request->has('password')) {
-            $user->password = $request->password;
-        }
-        if ($this->request->has('phone_parent')) {
-            $user->phone_parent = $request->phone_parent;
-        }
-        if ($this->request->has('email_parent')) {
-            $user->email_parent = $request->email_parent;
-        }
+       
 
         $user->save();
         if ($user != null) {
@@ -115,7 +104,7 @@ class DBUsersRepository implements UsersRepositoryinterface
     public function profile_details()
     {
 
-        $id = Auth::guard('student')->user()->id;
+        $id = Auth::guard('api')->user()->id;
         $user =  User::find($id);
         if ($user != null) {
 

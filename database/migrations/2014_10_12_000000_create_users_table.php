@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('password');
             $table->integer('city_id');
             $table->integer('area_id');
+            $table->boolean('gender')->default(0)->comment('0=male 1=female');
             $table->boolean('type')->default(0);
             $table->decimal('point')->default(0);
             $table->bigInteger('specialist_id')->nullable();

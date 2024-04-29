@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Api\V1;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\SpecialistsResource;
 use App\Models\specialist;
 use App\Repositoryinterface\UsersRepositoryinterface;
 
@@ -30,7 +31,7 @@ class UsersController extends Controller
     public function specialist()
     {
         $data = specialist::get();
-        return   Resp(  $data,'success');
+        return   Resp(SpecialistsResource::collection($data),'success');
     }
 
     // public function forgotpassword(LoginUserRequest $request)

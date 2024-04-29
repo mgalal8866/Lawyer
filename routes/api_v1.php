@@ -22,7 +22,7 @@ Route::controller(CityController::class)->group(function () {
     Route::get('area', 'area')->name('login');
 });
 Route::controller(IssueController::class)->middleware(['jwt.verify'])->group(function () {
-    Route::post('new-question', 'newquestion')->name('newquestion');
-    Route::get('my-questions', 'myquestion')->name('myquestion');
+    Route::post('new', 'newissue')->name('newissue');
+    Route::get('my', 'myissue')->name('myissue');
 });
 

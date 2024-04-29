@@ -22,6 +22,7 @@ class DBIssueRepository implements IssueRepositoryinterface
 
     public function newissue()
     {
+        dd($this->request->input('type',''));
         $data = $this->model->create([
             'title' => $this->request->title,
             'body' => $this->request->body,

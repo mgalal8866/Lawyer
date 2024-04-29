@@ -23,6 +23,7 @@ class LoginUserResource extends JsonResource
             'gender'    => $this->gender??'',
             'type'      => $this->type??'',
             'specialist'      => $this->specialist_id->name??'',
+            'description'      => $this->description??'',
             'rating'      => '5.0',
             'token'     => $this->token??'',
         ];

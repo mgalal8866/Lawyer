@@ -16,6 +16,7 @@ return new class extends Migration
             $table->bigInteger('user_id');
             $table->text('title');
             $table->text('body');
+            $table->bigInteger('specialist_id');
             $table->integer('reply')->default(0);
             $table->boolean('type')->default(0)->comment('0=Q & 1=ISSUE');
             $table->timestamps();

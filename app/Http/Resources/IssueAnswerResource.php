@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 
-class IssueResource extends JsonResource
+class IssueAnswerResource extends JsonResource
 {
 
     public function toArray(Request $request): array
@@ -15,9 +15,6 @@ class IssueResource extends JsonResource
             'id'        => $this->id??'',
             'title'     => $this->title??'',
             'body'      => $this->body??'',
-            'offers'    =>'0',
-            'status'    => 'مفعل',
-            'created_at'=> $this->created_at??'',
         ];
     }
 }

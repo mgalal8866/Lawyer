@@ -3,12 +3,12 @@
 namespace App\Repository;
 
 use App\Models\Answer;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
-use App\Repositoryinterface\AnswerRepositoryinterface;
-use Illuminate\Http\Request;
+use App\Repositoryinterface\IssueAnswerRepositoryinterface;
 
-class DBAnswerRepository implements AnswerRepositoryinterface
+class DBIssueAnswerRepository implements IssueAnswerRepositoryinterface
 {
 
     protected Model $model;

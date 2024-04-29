@@ -6,13 +6,13 @@ namespace App\Http\Controllers\Api\V1;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\answerResource;
-use App\Repositoryinterface\AnswerRepositoryinterface;
+use App\Http\Resources\IssueAnswerResource;
+use App\Repositoryinterface\IssueAnswerRepositoryinterface;
 
 class IssueAnswerController extends Controller
 {
     private $answer;
-    public function __construct(AnswerRepositoryinterface $answer)
+    public function __construct(IssueAnswerRepositoryinterface $answer)
     {
         $this->answer = $answer;
     }
@@ -21,7 +21,7 @@ class IssueAnswerController extends Controller
     {
         $data = $this->answer->newanswer();
         if ($data) {
-            return   Resp(new answerResource($data), 'success');
+            return   Resp(new IssueAnswerResource($data), 'success');
         } else {
             return   Resp('', 'not ', 400);
         }
@@ -32,7 +32,7 @@ class IssueAnswerController extends Controller
     {
         $data = $this->answer->myanswer();
         if ($data) {
-            return   Resp(answerResource::collection($data), 'success');
+            return   Resp(IssueAnswerResource::collection($data), 'success');
         } else {
             return   Resp('', 'not ', 400);
         }

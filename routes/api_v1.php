@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\V1\UsersController;
 use App\Http\Controllers\Api\V1\CityController;
+use App\Http\Controllers\Api\V1\QuestionController;
+use App\Http\Controllers\Api\V1\IssueController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Cookie;
@@ -19,7 +21,8 @@ Route::controller(CityController::class)->group(function () {
     Route::get('city', 'city')->name('login');
     Route::get('area', 'area')->name('login');
 });
-Route::controller(CityController::class)->group(function () {
-    Route::get('city', 'city')->name('login');
-    Route::get('area', 'area')->name('login');
+Route::controller(IssueController::class)->middleware(['jwt.verify'])->group(function () {
+    Route::post('new-question', 'newquestion')->name('newquestion');
+    Route::get('my-questions', 'myquestion')->name('myquestion');
 });
+

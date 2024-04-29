@@ -32,7 +32,7 @@ class DBIssueRepository implements IssueRepositoryinterface
             'type'          => $type == 'issue' ? 1 : 0
             ];
 
-        if ($this->request->specialist_id != null) {
+        if ($this->request->specialist != null) {
             $data['specialist_id'] = $this->request->specialist;
         }
         $data = $this->model->create($data);

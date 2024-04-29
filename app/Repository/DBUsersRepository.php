@@ -70,6 +70,8 @@ class DBUsersRepository implements UsersRepositoryinterface
             'specialist_id' => $request->specialist_id,
             'city_id'    => $request->city_id,
             'area_id'    => $request->area_id,
+            'description'    => $request->description,
+            // 'image'    => $request->image,
         ]);
         if($request->image){
 
@@ -91,7 +93,7 @@ class DBUsersRepository implements UsersRepositoryinterface
         if ($this->request->has('name')) {
             $user->name = $request->name;
         }
-       
+
 
         $user->save();
         if ($user != null) {

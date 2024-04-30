@@ -24,6 +24,8 @@ class DBIssueRepository implements IssueRepositoryinterface
 
     public function newissue()
     {
+
+
         $type = $this->request->input('type', '');
         $data = [
             'title'         => $this->request->title,
@@ -32,19 +34,19 @@ class DBIssueRepository implements IssueRepositoryinterface
             'type'          => $type == 'issue' ? 1 : 0,
             'status'        => 1
             ];
-
         if ($this->request->specialist != null) {
             $data['specialist_id'] = $this->request->specialist;
         }
         $data = $this->model->create($data);
 
-        // if ($this->request->files) {
-        //     foreach($this->request->files as $item){
-        //         // $dataX = $this->saveImageAndThumbnail($item, false, 'images');
-        //             $file =  uploadfile($item, "files/");
-        //         IssueFiles::create(['name'=> $file,'issue_id'=>$data->id]);
-        //     }
-        // }
+        $files = $this->request->file('files');
+
+        if ($files) {
+            foreach ($files as $item) {
+                $file =  uploadfile($item, "files/");
+                IssueFiles::create(['name' => $file, 'issue_id' => $data->id]);
+            }
+        }
 
         return $data;
     }
@@ -52,14 +54,14 @@ class DBIssueRepository implements IssueRepositoryinterface
     public function myissue()
     {
         $type = $this->request->input('type', '');
-        $type = $type =='issue'?1:0;
+        $type = $type == 'issue' ? 1 : 0;
         $data =  $this->model->withCount(['answer'])->whereType($type)->whereUserId(Auth::guard('api')->user()->id)->get();
         return  $data;
     }
     public function get_issue_id($id)
     {
 
-        $data =  $this->model->whereId($id)->withCount(['answer'])->with(['answer','files'])->get();
+        $data =  $this->model->whereId($id)->withCount(['answer'])->with(['answer', 'files'])->get();
         return  $data;
     }
 }

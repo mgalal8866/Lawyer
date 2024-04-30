@@ -18,6 +18,8 @@ class IssueResource extends JsonResource
             'offers'    =>'0',
             'status'    => 'مفعل',
             'created_at'=> $this->created_at??'',
+            'files'=> $this->files??'',
+            'answers'=>IssueAnswerResource::collection( $this->answer??''),
         ];
     }
 }

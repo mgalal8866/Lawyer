@@ -1,5 +1,8 @@
 <?php
 
+use App\Livewire\Issue\ViewIssue;
+use App\Livewire\Lawyer\ViewLawyer;
+use App\Livewire\Users\ViewUser;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', ViewUser::class)->name('main-dashboard');
+Route::get('/user/view', ViewUser::class)->name('view-user');
+Route::get('/issue/view',ViewIssue::class)->name('view-issue');
+Route::get('/lawyer/view',ViewLawyer::class)->name('view-lawyer');

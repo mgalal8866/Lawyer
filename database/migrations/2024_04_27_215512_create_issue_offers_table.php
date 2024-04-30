@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('issue_offers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('issue_id');
-            $table->bigInteger('user_id');
-            $table->text('reply');
-            $table->decimal('price',8,2);
+            $table->bigInteger('issue_id')->nullable();
+            $table->bigInteger('user_id')->nullable();
+            $table->text('reply')->nullable();
+            $table->decimal('price',8,2)->nullable();
             $table->timestamps();
         });
     }

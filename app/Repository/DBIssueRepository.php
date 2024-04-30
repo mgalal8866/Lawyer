@@ -37,12 +37,13 @@ class DBIssueRepository implements IssueRepositoryinterface
         }
         $data = $this->model->create($data);
 
-        if ($this->request->files) {
-            foreach($this->request->files as $item){
-                $dataX = $this->saveImageAndThumbnail($item, false, 'images');
-                IssueFiles::create(['name'=>$dataX['image'],'issue_id'=>$data->id]);
-            }
-        }
+        // if ($this->request->files) {
+        //     foreach($this->request->files as $item){
+        //         // $dataX = $this->saveImageAndThumbnail($item, false, 'images');
+        //             $file =  uploadfile($item, "files/");
+        //         IssueFiles::create(['name'=> $file,'issue_id'=>$data->id]);
+        //     }
+        // }
 
         return $data;
     }
@@ -52,6 +53,12 @@ class DBIssueRepository implements IssueRepositoryinterface
         $type = $this->request->input('type', '');
         $type = $type =='issue'?1:0;
         $data =  $this->model->whereType($type)->whereUserId(Auth::guard('api')->user()->id)->get();
+        return  $data;
+    }
+    public function get_issue_id($id)
+    {
+
+        $data =  $this->model->whereId($id)->with(['answer','files'])->get();
         return  $data;
     }
 }

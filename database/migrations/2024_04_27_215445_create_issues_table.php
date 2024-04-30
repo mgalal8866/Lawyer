@@ -19,6 +19,7 @@ return new class extends Migration
             $table->bigInteger('specialist_id');
             $table->integer('reply')->default(0);
             $table->boolean('type')->default(0)->comment('0=Q & 1=ISSUE');
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

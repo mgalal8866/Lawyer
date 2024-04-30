@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
-
+use Illuminate\Support\Facades\File;
 class User extends Authenticatable  implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable ;
@@ -52,7 +52,18 @@ class User extends Authenticatable  implements JWTSubject
     {
         return $this->belongsTo(specialist::class);
     }
+    public function getImageurlAttribute()
+    {
+        $p =  '/files' . '/' ;
+        $path = asset($p) ;
+        if (!File::exists($path)) {
+            mkdir($path, 0777, true);
+        }
+        return $this->image? $path. '/'. $this->image: path('','').'no-imag.png';
 
+
+        return $this->image?path('','category') . $this->image: path('','').'no-imag.png';
+    }
     public function getJWTIdentifier()
     {
         return $this->getKey();

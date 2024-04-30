@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('issue_files', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('issue_id');
-            $table->name('name');
+            $table->string('name');
             $table->timestamps();
         });
     }

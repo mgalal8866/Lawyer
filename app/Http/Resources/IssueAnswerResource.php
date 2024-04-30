@@ -16,6 +16,7 @@ class IssueAnswerResource extends JsonResource
             'reply'      => $this->reply??'',
             'user_id'    => $this->user_id??'',
             'user_name'  => $this->user->name??'',
+            'rating'     => $this->user->comments != null? number_format($this->user->comments->sum('rating')/$this->user->comments->count(),2):'0',
             'deferred'   => $this->deferred??'',
         ];
 

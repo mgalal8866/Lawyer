@@ -39,7 +39,7 @@ class DBIssueAnswerRepository implements IssueAnswerRepositoryinterface
 
     public function myanswer()
     {
-        $data =  $this->model->whereUserId(Auth::guard('api')->user()->id)->get();
+        $data =  $this->model->whereUserId(Auth::guard('api')->user()->id)->with(['user','user.comments'])->get();
         return  $data;
     }
 }

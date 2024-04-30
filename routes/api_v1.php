@@ -30,7 +30,7 @@ Route::controller(IssueController::class)->middleware(['jwt.verify'])->group(fun
 });
 Route::controller(IssueAnswerController::class)->middleware(['jwt.verify'])->group(function () {
     Route::post('answer', 'newanswer')->name('newanswer');
-    Route::get('my', 'myissue')->name('myissue');
+    
 });
 Route::controller(NotificationController::class)->middleware(['jwt.verify'])->group(function () {
 

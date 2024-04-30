@@ -7,6 +7,7 @@ use Stevebauman\Location\Facades\Location;
 use App\Http\Controllers\Api\V1\CityController;
 use App\Http\Controllers\Api\V1\IssueController;
 use App\Http\Controllers\Api\V1\UsersController;
+use App\Http\Controllers\Api\V1\CommentsController;
 use App\Http\Controllers\Api\V1\QuestionController;
 use App\Http\Controllers\Api\V1\IssueAnswerController;
 use App\Http\Controllers\Api\V1\NotificationController;
@@ -23,6 +24,10 @@ Route::controller(UsersController::class)->prefix('auth')->as('auth.')->group(fu
 Route::controller(CityController::class)->group(function () {
     Route::get('city', 'city')->name('login');
     Route::get('area', 'area')->name('login');
+});
+Route::controller(CommentsController::class)->group(function () {
+    Route::get('add/rating', 'new_comment')->name('new_comment');
+    Route::get('comments/{id?}', 'get_comment_byid')->name('get_comment_byid');
 });
 Route::controller(IssueController::class)->middleware(['jwt.verify'])->group(function () {
     Route::post('new', 'newissue')->name('newissue');

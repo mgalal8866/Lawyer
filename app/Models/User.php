@@ -52,6 +52,10 @@ class User extends Authenticatable  implements JWTSubject
     {
         return $this->belongsTo(specialist::class);
     }
+    public function comments()
+    {
+        return $this->belongsTo(Comments::class, 'lawyer_id');
+    }
     public function getImageurlAttribute()
     {
         $p =  '/files' . '/' ;

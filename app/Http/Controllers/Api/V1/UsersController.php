@@ -33,7 +33,7 @@ class UsersController extends Controller
         if ($this->users->check_point()) {
            return Resp('', 'success');
         } else {
-            return Resp('', 'عدد نقاطك اقل من المطلوب يرجى اعاده شحن النقاط',400,false);
+            return Resp('', 'success',400,false);
         }
     }
 

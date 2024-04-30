@@ -15,9 +15,9 @@ class IssueResource extends JsonResource
             'id'        => $this->id??'',
             'title'     => $this->title??'',
             'body'      => $this->body??'',
-            'offers'    =>'0',
-            'status'    => 'مفعل',
-            'created_at'=> $this->created_at??'',
+            'offers'    => $this->answer_count??'',
+            'status'    => $this->status,
+            'created_at'      =>\Carbon\Carbon::parse($this->created_at)->translatedFormat('l j F Y -  H:i a') ,
             'files'=> $this->files??'',
             'answers'=>IssueAnswerResource::collection( $this->answer??''),
         ];

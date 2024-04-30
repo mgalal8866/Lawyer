@@ -53,13 +53,13 @@ class DBIssueRepository implements IssueRepositoryinterface
     {
         $type = $this->request->input('type', '');
         $type = $type =='issue'?1:0;
-        $data =  $this->model->whereType($type)->whereUserId(Auth::guard('api')->user()->id)->get();
+        $data =  $this->model->withCount(['answer'])->whereType($type)->whereUserId(Auth::guard('api')->user()->id)->get();
         return  $data;
     }
     public function get_issue_id($id)
     {
 
-        $data =  $this->model->whereId($id)->with(['answer','files'])->get();
+        $data =  $this->model->whereId($id)->withCount(['answer'])->with(['answer','files'])->get();
         return  $data;
     }
 }

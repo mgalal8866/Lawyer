@@ -15,6 +15,7 @@ class NotificationResource extends JsonResource
             'id'        => $this->id??'',
             'title'     => $this->title??'',
             'body'      => $this->body??'',
+            'date'      =>\Carbon\Carbon::parse($this->created_at)->translatedFormat('l j F Y -  H:i a') ,
         ];
     }
 }

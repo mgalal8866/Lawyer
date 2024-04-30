@@ -13,9 +13,9 @@ class IssueAnswerResource extends JsonResource
     {
         $data=[
             'id'         => $this->id??'',
-            'reply'      => $this->reply??'',
+            'reply'      => $this->reply?number_format($this->reply,0):'0',
             'user_id'    => $this->user_id??'',
-            'user_name'      => $this->user->name??'',
+            'user_name'  => $this->user->name??'',
         ];
 
         if( $this->price){

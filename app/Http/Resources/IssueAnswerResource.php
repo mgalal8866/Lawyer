@@ -16,9 +16,12 @@ class IssueAnswerResource extends JsonResource
             'reply'      => $this->reply??'',
             'user_id'    => $this->user_id??'',
             'user_name'  => $this->user->name??'',
+            'user_image' => $this->user->imageurl??'',
             'rating'     => $this->user->comments != null? number_format($this->user->comments->sum('rating')/$this->user->comments->count(),2):'0',
-            // 'rating'     => $this->user->comments,
+            'status'     => $this->status??'قبول العرض او لا ',
             'deferred'   => $this->deferred??'',
+            'created_at'      => \Carbon\Carbon::parse($this->created_at)->translatedFormat('l j F Y -  H:i a'),
+
         ];
 
         if( $this->price){

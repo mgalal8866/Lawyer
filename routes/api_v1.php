@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\V1\IssueController;
 use App\Http\Controllers\Api\V1\UsersController;
 use App\Http\Controllers\Api\V1\QuestionController;
 use App\Http\Controllers\Api\V1\IssueAnswerController;
+use App\Http\Controllers\Api\V1\NotificationController;
 
 
 
@@ -30,5 +31,9 @@ Route::controller(IssueController::class)->middleware(['jwt.verify'])->group(fun
 Route::controller(IssueAnswerController::class)->middleware(['jwt.verify'])->group(function () {
     Route::post('answer', 'newanswer')->name('newanswer');
     Route::get('my', 'myissue')->name('myissue');
+});
+Route::controller(NotificationController::class)->middleware(['jwt.verify'])->group(function () {
+
+    Route::get('notification', 'get_my_notification')->name('notification');
 });
 

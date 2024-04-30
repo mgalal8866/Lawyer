@@ -38,7 +38,7 @@ class IssueController extends Controller
     }
     public function get_issue_id($id)
     {
-    
+
         $data = $this->issue->get_issue_id($id);
         if ($data) {
             return   Resp(IssueResource::collection($data), 'success');

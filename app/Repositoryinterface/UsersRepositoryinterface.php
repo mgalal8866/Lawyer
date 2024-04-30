@@ -13,6 +13,7 @@ interface UsersRepositoryinterface{
     public function change_password($request);
     public function check_point();
     public function resend_code($request);
+    public function lawyer_by_id($id);
 
 
 }

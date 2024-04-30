@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Api\V1;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\LawyerResource;
 use App\Http\Resources\SpecialistsResource;
 use App\Models\specialist;
 use App\Repositoryinterface\UsersRepositoryinterface;
@@ -34,6 +35,15 @@ class UsersController extends Controller
            return Resp('', 'success');
         } else {
             return Resp('', 'success',400,false);
+        }
+    }
+    public function lawyer_by_id($id)
+    {
+        $data =$this->users->lawyer_by_id($id);
+        if ($data) {
+           return Resp(new LawyerResource($data), 'success');
+        } else {
+            return Resp('', 'error',400,false);
         }
     }
 

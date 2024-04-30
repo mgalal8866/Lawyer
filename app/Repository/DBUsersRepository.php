@@ -56,6 +56,11 @@ class DBUsersRepository implements UsersRepositoryinterface
             return false;
         }
     }
+    public function lawyer_by_id($id)
+    {
+        $data = User::find($id);
+        return   $data;
+    }
     public function get_teamwork()
     {
         $data = User::whereTeamwork('1')->get();

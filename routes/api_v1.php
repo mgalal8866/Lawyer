@@ -14,11 +14,15 @@ use App\Http\Controllers\Api\V1\NotificationController;
 
 
 
-Route::controller(UsersController::class)->prefix('auth')->as('auth.')->group(function () {
-    Route::post('signup', 'signup')->name('signup');
-    Route::get('login', 'login')->name('login');
-    Route::get('specialist', 'specialist')->name('specialist');
-    Route::get('check/point', 'check_point')->name('check-point');
+Route::controller(UsersController::class)->group(function () {
+    Route::prefix('auth')->as('auth.')->group(function(){
+        Route::post('signup', 'signup')->name('signup');
+        Route::get('login', 'login')->name('login');
+        Route::get('specialist', 'specialist')->name('specialist');
+        Route::get('check/point', 'check_point')->name('check-point');
+    });
+
+    Route::get('lwayer/{id?}', 'lawyer_by_id')->name('check-lawyer_by_id');
 
 });
 Route::controller(CityController::class)->group(function () {

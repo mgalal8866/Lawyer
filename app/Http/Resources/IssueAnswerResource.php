@@ -13,7 +13,7 @@ class IssueAnswerResource extends JsonResource
     {
         $data=[
             'id'         => $this->id??'',
-            'reply'      => $this->reply !=0 ?number_format($this->reply,0):'0',
+            'reply'      => $this->reply??'',
             'user_id'    => $this->user_id??'',
             'user_name'  => $this->user->name??'',
             'deferred'   => $this->deferred??'',

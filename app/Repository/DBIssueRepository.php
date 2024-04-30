@@ -33,7 +33,7 @@ class DBIssueRepository implements IssueRepositoryinterface
             'user_id'       => Auth::guard('api')->user()->id,
             'type'          => $type == 'issue' ? 1 : 0,
             'status'        => 1
-            ];
+        ];
         if ($this->request->specialist != null) {
             $data['specialist_id'] = $this->request->specialist;
         }
@@ -51,11 +51,29 @@ class DBIssueRepository implements IssueRepositoryinterface
         return $data;
     }
 
+    public function delete_issue($id)
+    {
+
+        $data =  $this->model->find($id);
+        if ($data != null) {
+            $data->delete();
+            return  true;
+        } else {
+            return  false;
+        }
+    }
     public function myissue()
     {
         $type = $this->request->input('type', '');
         $type = $type == 'issue' ? 1 : 0;
         $data =  $this->model->withCount(['answer'])->whereType($type)->whereUserId(Auth::guard('api')->user()->id)->get();
+        return  $data;
+    }
+    public function get_all_issue()
+    {
+        $type = $this->request->input('type', '');
+        $type = $type == 'issue' ? 1 : 0;
+        $data =  $this->model->whereType($type)->get();
         return  $data;
     }
     public function get_issue_id($id)

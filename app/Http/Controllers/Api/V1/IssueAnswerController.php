@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\IssueAnswerResource;
+use App\Http\Resources\AcceptedOffersResource;
 use App\Repositoryinterface\IssueAnswerRepositoryinterface;
 
 class IssueAnswerController extends Controller
@@ -42,6 +43,15 @@ class IssueAnswerController extends Controller
         $data = $this->answer->accept_offer($id);
         if ($data) {
             return   Resp('', 'تم قبول العرض بنجاح');
+        } else {
+            return   Resp('', 'error', 400);
+        }
+    }
+    public function my_accept_offer()
+    {
+        $data = $this->answer->my_accept_offer();
+        if ($data) {
+            return   Resp( AcceptedOffersResource::collection($data), 'success');
         } else {
             return   Resp('', 'error', 400);
         }

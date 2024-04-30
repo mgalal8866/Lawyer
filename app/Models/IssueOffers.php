@@ -18,4 +18,8 @@ class IssueOffers extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    public function issue()
+    {
+        return $this->belongsTo(issue::class, 'issue_id');
+    }
 }

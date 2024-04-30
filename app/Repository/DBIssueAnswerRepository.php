@@ -30,7 +30,7 @@ class DBIssueAnswerRepository implements IssueAnswerRepositoryinterface
             'user_id'  => Auth::guard('api')->user()->id,
             'deferred' => $this->request->deferred,
         ];
-        if($this->request->price){
+        if ($this->request->price) {
             $data['price'] = $this->request->price;
         }
         $data = $this->model->create($data);
@@ -39,19 +39,28 @@ class DBIssueAnswerRepository implements IssueAnswerRepositoryinterface
 
     public function myanswer()
     {
-        $data =  $this->model->whereUserId(Auth::guard('api')->user()->id)->with(['user','user.comments'])->get();
+        $data =  $this->model->whereUserId(Auth::guard('api')->user()->id)->with(['user', 'user.comments'])->get();
         return  $data;
     }
 
     public function accept_offer($id)
     {
         $data =  $this->model->find($id);
-        $data->status = 1;
-        $data->save();
-        if($data){
-
+        if ($data != null) {
+            $data->status = 1;
+            $data->save();
             return  true;
-        }else{
+        } else {
+
+            return  false;
+        }
+    }
+    public function my_accept_offer()
+    {
+        $data =  $this->model->with(['issue'])->where(['user_id' => Auth::guard('api')->user()->id, 'status' => 1])->get();
+        if ($data != null) {
+            return  $data;
+        } else {
 
             return  false;
         }

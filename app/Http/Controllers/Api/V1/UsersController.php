@@ -28,7 +28,23 @@ class UsersController extends Controller
     {
         return  $this->users->signup($request);
     }
+    public function profile_update()
+    {
+        return  $this->users->profile_update();
+    }
+    public function profile_details()
+    {
+        return  $this->users->profile_details();
+    }
 
+    public function change_password(Request $request)
+    {
+        if ($this->users->change_password()) {
+           return Resp('', 'success');
+        } else {
+            return Resp('', 'error',400,false);
+        }
+    }
     public function check_point(Request $request)
     {
         if ($this->users->check_point()) {

@@ -98,20 +98,30 @@ class DBUsersRepository implements UsersRepositoryinterface
         }
         return Resp('', 'error', 402, true);
     }
-    public function profile_update($request)
+    public function profile_update()
     {
 
         $id = Auth::guard('api')->user()->id;
         $user =  User::find($id);
 
         if ($this->request->has('name')) {
-            $user->name = $request->name;
+            $user->name =  $this->request->name;
+        }
+        if ($this->request->has('type')) {
+            $user->type =  $this->request->type;
+        }
+        if ($this->request->has('city_id')) {
+            $user->city_id = $this->request->city_id;
         }
 
-
+        if ($this->request->has('area_id')) {
+            $user->area_id = $this->request->area_id;
+        }
+        if ($this->request->has('gender')) {
+            $user->gender = $this->request->gender;
+        }
         $user->save();
         if ($user != null) {
-
             $data =  new LoginUserResource($user);
             return Resp($data, 'Success', 200, true);
         }
@@ -123,11 +133,10 @@ class DBUsersRepository implements UsersRepositoryinterface
         $id = Auth::guard('api')->user()->id;
         $user =  User::find($id);
         if ($user != null) {
-
             $data =  new LoginUserResource($user);
             return Resp($data, 'Success', 200, true);
         }
-        return Resp('', 'error', 402, true);
+        return Resp('', 'error', 400, true);
     }
     public function  forgotpassword($request)
     {
@@ -147,12 +156,15 @@ class DBUsersRepository implements UsersRepositoryinterface
     {
         return Resp('', 'Send Code Success', 200, true);
     }
-    public function  change_password($request)
+    public function  change_password()
     {
-        $user =  $this->model->where('phone', $request->phone)->first();
-        $user->password = $request->password;
+        $user =  $this->model->find(Auth::guard('api')->user()->id);
+        $user->password = $this->request->password;
         $user->save();
-        $data = ['phone' => $user->phone, 'password' => $request->password];
-        return  $this->credentials($data);
+        if ($user != null) {
+            return  true;
+        } else {
+            return false;
+        }
     }
 }

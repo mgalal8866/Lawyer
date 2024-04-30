@@ -22,7 +22,10 @@ Route::controller(UsersController::class)->group(function () {
         Route::get('check/point', 'check_point')->name('check-point');
     });
 
-    Route::get('lawyer/{id?}', 'lawyer_by_id')->name('check-lawyer_by_id');
+    Route::Post('update/profile', 'profile_update')->name('profile_update');
+    Route::get('details/profile', 'profile_details')->name('profile_details');
+    Route::get('lawyer/{id?}', 'lawyer_by_id')->name('lawyer_by_id');
+    Route::Post('change_password', 'change_password')->name('change_password');
 
 });
 Route::controller(CityController::class)->group(function () {
@@ -37,10 +40,13 @@ Route::controller(IssueController::class)->middleware(['jwt.verify'])->group(fun
     Route::post('new', 'newissue')->name('newissue');
     Route::get('my', 'myissue')->name('myissue');
     Route::get('issue/{id?}', 'get_issue_id')->name('myissue');
+    Route::get('delete/issue/{id?}', 'delete_issue')->name('delete_issue');
+    Route::get('all/issue', 'get_all_issue')->name('get_all_issue');
 });
 Route::controller(IssueAnswerController::class)->middleware(['jwt.verify'])->group(function () {
     Route::post('answer', 'newanswer')->name('newanswer');
     Route::get('offer/{id?}', 'accept_offer')->name('accept_offer');
+    Route::get('my_accepted_offers', 'my_accept_offer')->name('my_accept_offer');
 
 });
 Route::controller(NotificationController::class)->middleware(['jwt.verify'])->group(function () {

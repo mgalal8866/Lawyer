@@ -29,7 +29,8 @@ class DBIssueRepository implements IssueRepositoryinterface
             'title'         => $this->request->title,
             'body'          => $this->request->body,
             'user_id'       => Auth::guard('api')->user()->id,
-            'type'          => $type == 'issue' ? 1 : 0
+            'type'          => $type == 'issue' ? 1 : 0,
+            'status'        => 1
             ];
 
         if ($this->request->specialist != null) {

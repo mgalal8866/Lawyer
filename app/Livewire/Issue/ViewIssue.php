@@ -14,7 +14,7 @@ class ViewIssue extends Component
     public $type =1;
     public function render()
     {
-        $issues=Issue::with(['user'])->whereType($this->type)->paginate(1);
+        $issues=Issue::with(['user'])->withCount('answer')->whereType($this->type)->paginate(20);
         return view('issue.view-issue',compact('issues'));
     }
 }

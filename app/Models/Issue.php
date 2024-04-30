@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enum\StatusIssue;
 use App\Models\User;
 use App\Models\IssueFiles;
 use App\Models\IssueOffers;
@@ -12,7 +13,9 @@ class Issue extends Model
 {
     use HasFactory;
     protected $guarded = [];
-
+    protected $casts = [
+        'status' => StatusIssue::class
+    ];
     public function answer()
     {
         return $this->hasMany(IssueOffers::class, 'issue_id');

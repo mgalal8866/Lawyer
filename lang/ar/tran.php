@@ -4,6 +4,8 @@ return [
     'dashboard'       => 'الرئيسية',
     'viewissue'      => 'عرض القضايا و الاسئلة',
     'issue'      => 'قضية',
+    'viewnotification'      => 'عرض الاشعارات',
+    'read'      => 'قراءه',
     'lawyers'      => 'المحامين',
     'lawyer'      => 'المحامى',
     'viewlawyers'      => 'عرض المحامين',

@@ -18,7 +18,7 @@ class IssueAnswerResource extends JsonResource
             'user_name'  => $this->user->name??'',
             'user_image' => $this->user->imageurl??'',
             'rating'     => $this->user->comments != null? number_format($this->user->comments->sum('rating')/$this->user->comments->count(),2):'0',
-            'status'     => $this->status??'قبول العرض او لا ',
+            'status'     => $this->status->getgetLabelText(),
             'deferred'   => $this->deferred??'',
             'created_at'      => \Carbon\Carbon::parse($this->created_at)->translatedFormat('l j F Y -  H:i a'),
 

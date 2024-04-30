@@ -22,7 +22,7 @@ Route::controller(UsersController::class)->group(function () {
         Route::get('check/point', 'check_point')->name('check-point');
     });
 
-    Route::get('lwayer/{id?}', 'lawyer_by_id')->name('check-lawyer_by_id');
+    Route::get('lawyer/{id?}', 'lawyer_by_id')->name('check-lawyer_by_id');
 
 });
 Route::controller(CityController::class)->group(function () {
@@ -40,6 +40,7 @@ Route::controller(IssueController::class)->middleware(['jwt.verify'])->group(fun
 });
 Route::controller(IssueAnswerController::class)->middleware(['jwt.verify'])->group(function () {
     Route::post('answer', 'newanswer')->name('newanswer');
+    Route::get('offer/{id?}', 'accept_offer')->name('accept_offer');
 
 });
 Route::controller(NotificationController::class)->middleware(['jwt.verify'])->group(function () {

@@ -37,5 +37,14 @@ class IssueAnswerController extends Controller
             return   Resp('', 'not ', 400);
         }
     }
+    public function accept_offer($id)
+    {
+        $data = $this->answer->accept_offer($id);
+        if ($data) {
+            return   Resp('', 'تم قبول العرض بنجاح');
+        } else {
+            return   Resp('', 'error', 400);
+        }
+    }
 
 }

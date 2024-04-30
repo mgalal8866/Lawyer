@@ -23,6 +23,7 @@ class LawyerResource extends JsonResource
             'specialist' => $this->specialist_id->name??'',
             'description'      => $this->description??'',
             'rating'      => $this->comments != null ?number_format($this->comments->sum('rating')/$this->comments->count(),2):'',
+            'comments'   => CommentsResource::collection($this->comments),
         ];
     }
 }

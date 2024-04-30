@@ -42,4 +42,18 @@ class DBIssueAnswerRepository implements IssueAnswerRepositoryinterface
         $data =  $this->model->whereUserId(Auth::guard('api')->user()->id)->with(['user','user.comments'])->get();
         return  $data;
     }
+
+    public function accept_offer($id)
+    {
+        $data =  $this->model->find($id);
+        $data->status = 1;
+        $data->save();
+        if($data){
+
+            return  true;
+        }else{
+
+            return  false;
+        }
+    }
 }

@@ -80,6 +80,21 @@
 
                  </ul>
              </li>
+             <li class=" nav-item">
+                 <a class="d-flex align-items-center" href="#">
+                     <i class="fas fa-copy"></i>
+                     <span class="menu-title text-truncate">{{ __('tran.notification') }}</span>
+                 </a>
+                 <ul class="menu-content">
+                     <li>
+                         <a class="d-flex align-items-center" href="{{ route('view-notification') }}">
+                             <i data-feather="circle"></i>
+                             <span class="menu-item text-truncate">{{ __('tran.viewnotification') }}</span>
+                         </a>
+                     </li>
+
+                 </ul>
+             </li>
 
          </ul>
      </div>

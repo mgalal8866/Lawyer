@@ -28,7 +28,7 @@ class DBIssueAnswerRepository implements IssueAnswerRepositoryinterface
             'issue_id' => $this->request->issue_id,
             'reply'    => $this->request->reply,
             'user_id'  => Auth::guard('api')->user()->id,
-            // 'type'    => $type=='issue'?1:0,
+            'deferred' => $this->request->deferred,
         ];
         if($this->request->price){
             $data['price'] = $this->request->price;

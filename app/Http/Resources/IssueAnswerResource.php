@@ -16,6 +16,7 @@ class IssueAnswerResource extends JsonResource
             'reply'      => $this->reply?number_format($this->reply,0):'0',
             'user_id'    => $this->user_id??'',
             'user_name'  => $this->user->name??'',
+            'deferred'   => $this->deferred??'',
         ];
 
         if( $this->price){

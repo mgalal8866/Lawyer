@@ -20,51 +20,26 @@ class UsersController extends Controller
 
     public function login(Request $request)
     {
-      return  $this->users->login($request);
+        return  $this->users->login($request);
     }
 
     public function signup(Request $request)
     {
-
-      return  $this->users->signup($request);
+        return  $this->users->signup($request);
     }
+
+    public function check_point(Request $request)
+    {
+        if ($this->users->check_point()) {
+           return Resp('', 'success');
+        } else {
+            return Resp('', 'عدد نقاطك اقل من المطلوب يرجى اعاده شحن النقاط',400,false);
+        }
+    }
+
     public function specialist()
     {
         $data = specialist::get();
-        return   Resp(SpecialistsResource::collection($data),'success');
+        return   Resp(SpecialistsResource::collection($data), 'success');
     }
-
-    // public function forgotpassword(LoginUserRequest $request)
-    // {
-    //   return  $this->users->forgotpassword($request);
-    // }
-    // public function verificationcode(Request $request)
-    // {
-    //     return  $this->users->verificationcode($request);
-    // }
-    // public function change_password(Request $request)
-    // {
-    //   return  $this->users->change_password($request);
-    // }
-    // public function resend_code(Request $request)
-    // {
-    //   return  $this->users->resend_code($request);
-    // }
-    // public function profile_details()
-    // {
-    //   return  $this->users->profile_details();
-    // }
-
-
-    // public function sendotp(Request $request)
-    // {
-    // //   return  $this->users->sendotp($request);
-    // }
-
-    // public function profile_update(Request $request)
-    // {
-    //   return  $this->users->profile_update($request);
-    // }
-
-
 }

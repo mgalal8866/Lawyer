@@ -17,6 +17,7 @@ Route::controller(UsersController::class)->prefix('auth')->as('auth.')->group(fu
     Route::post('signup', 'signup')->name('signup');
     Route::get('login', 'login')->name('login');
     Route::get('specialist', 'specialist')->name('specialist');
+    Route::get('check/point', 'check_point')->name('check-point');
 
 });
 Route::controller(CityController::class)->group(function () {
@@ -30,7 +31,7 @@ Route::controller(IssueController::class)->middleware(['jwt.verify'])->group(fun
 });
 Route::controller(IssueAnswerController::class)->middleware(['jwt.verify'])->group(function () {
     Route::post('answer', 'newanswer')->name('newanswer');
-    
+
 });
 Route::controller(NotificationController::class)->middleware(['jwt.verify'])->group(function () {
 

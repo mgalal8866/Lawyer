@@ -18,6 +18,7 @@ return new class extends Migration
             $table->bigInteger('user_id')->nullable();
             $table->boolean('is_read')->default(0);
             $table->bigInteger('redirect')->nullable();
+            $table->boolean('type')->default(0);
             $table->string('image')->nullable();
             $table->timestamps();
         });

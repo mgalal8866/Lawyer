@@ -44,13 +44,22 @@ class DBUsersRepository implements UsersRepositoryinterface
     }
     public function login($request)
     {
-        $data= ['phone'=>$request->phone,'password'=>$request->password];
-     return  $this->credentials($data);
+        $data = ['phone' => $request->phone, 'password' => $request->password];
+        return  $this->credentials($data);
+    }
+    public function check_point()
+    {
+        $point =  Auth::guard('api')->user()->point;
+        if ($point  > 5) {
+            return true;
+        } else {
+            return false;
+        }
     }
     public function get_teamwork()
     {
-        $data= User::whereTeamwork('1')->get();
-     return   $data;
+        $data = User::whereTeamwork('1')->get();
+        return   $data;
     }
     public function sendotp()
     {
@@ -73,7 +82,7 @@ class DBUsersRepository implements UsersRepositoryinterface
             'description'    => $request->description,
             // 'image'    => $request->image,
         ]);
-        if($request->image){
+        if ($request->image) {
 
             $user->image = '';
             $user->save();
@@ -138,7 +147,7 @@ class DBUsersRepository implements UsersRepositoryinterface
         $user =  $this->model->where('phone', $request->phone)->first();
         $user->password = $request->password;
         $user->save();
-        $data= ['phone'=>$user->phone,'password'=>$request->password];
+        $data = ['phone' => $user->phone, 'password' => $request->password];
         return  $this->credentials($data);
-        }
+    }
 }

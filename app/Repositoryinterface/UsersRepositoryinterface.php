@@ -11,6 +11,7 @@ interface UsersRepositoryinterface{
     public function verificationcode($request);
     public function forgotpassword($request);
     public function change_password($request);
+    public function check_point();
     public function resend_code($request);
 
 

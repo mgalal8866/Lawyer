@@ -16,6 +16,7 @@ return new class extends Migration
             $table->bigInteger('issue_id')->nullable();
             $table->bigInteger('user_id')->nullable();
             $table->text('reply')->nullable();
+            $table->boolean('deferred')->default(0);
             $table->decimal('price',8,2)->nullable();
             $table->timestamps();
         });

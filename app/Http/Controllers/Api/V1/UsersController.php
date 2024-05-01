@@ -53,6 +53,15 @@ class UsersController extends Controller
             return Resp('', 'success',400,false);
         }
     }
+    public function booking_lawyer()
+    {
+        $data =$this->users->booking_lawyer();
+        if ( $data) {
+           return Resp(LawyerResource::collection($data), 'success');
+        } else {
+            return Resp('', 'success',400,false);
+        }
+    }
     public function lawyer_by_id($id)
     {
         $data =$this->users->lawyer_by_id($id);

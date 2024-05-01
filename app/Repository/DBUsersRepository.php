@@ -60,6 +60,19 @@ class DBUsersRepository implements UsersRepositoryinterface
         $data = User::find($id);
         return   $data;
     }
+    public function booking_lawyer()
+    {
+        $data=[];
+        if($this->request->city_id!=null){
+            $data['city_id'] =$this->request->city_id;
+        }
+        if($this->request->area_id!=null){
+            $data['area_id'] = $this->request->area_id;
+        }
+// dd($data);
+        $data = User::whereType(1)->where($data)->get();
+        return   $data;
+    }
     public function get_teamwork()
     {
         $data = User::whereTeamwork('1')->get();

@@ -83,6 +83,21 @@
              <li class=" nav-item">
                  <a class="d-flex align-items-center" href="#">
                      <i class="fas fa-copy"></i>
+                     <span class="menu-title text-truncate">{{ __('tran.Booking') }}</span>
+                 </a>
+                 <ul class="menu-content">
+                     <li>
+                         <a class="d-flex align-items-center" href="{{ route('view-booking') }}">
+                             <i data-feather="circle"></i>
+                             <span class="menu-item text-truncate">{{ __('tran.viewbooking') }}</span>
+                         </a>
+                     </li>
+
+                 </ul>
+             </li>
+             <li class=" nav-item">
+                 <a class="d-flex align-items-center" href="#">
+                     <i class="fas fa-copy"></i>
                      <span class="menu-title text-truncate">{{ __('tran.notification') }}</span>
                  </a>
                  <ul class="menu-content">

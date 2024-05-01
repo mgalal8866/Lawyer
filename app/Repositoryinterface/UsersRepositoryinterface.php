@@ -14,6 +14,7 @@ interface UsersRepositoryinterface{
     public function check_point();
     public function resend_code($request);
     public function lawyer_by_id($id);
+    public function booking_lawyer();
 
 
 }

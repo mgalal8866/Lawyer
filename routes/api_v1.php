@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Cookie;
@@ -7,12 +8,11 @@ use Stevebauman\Location\Facades\Location;
 use App\Http\Controllers\Api\V1\CityController;
 use App\Http\Controllers\Api\V1\IssueController;
 use App\Http\Controllers\Api\V1\UsersController;
+use App\Http\Controllers\Api\V1\BookingController;
 use App\Http\Controllers\Api\V1\CommentsController;
 use App\Http\Controllers\Api\V1\QuestionController;
 use App\Http\Controllers\Api\V1\IssueAnswerController;
 use App\Http\Controllers\Api\V1\NotificationController;
-
-
 
 Route::controller(UsersController::class)->group(function () {
     Route::prefix('auth')->as('auth.')->group(function(){
@@ -25,8 +25,15 @@ Route::controller(UsersController::class)->group(function () {
     Route::get('details/profile', 'profile_details')->name('profile_details');
     Route::get('lawyer/{id?}', 'lawyer_by_id')->name('lawyer_by_id');
     Route::Post('change_password', 'change_password')->name('change_password');
+    Route::get('booking/lawyer', 'booking_lawyer')->name('booking_lawyer');
 });
 
+Route::controller(BookingController::class)->group(function () {
+    Route::get('get/booking', 'get_booking')->name('get_booking');
+    Route::post('new_booking', 'new_booking')->name('new_booking');
+    Route::get('my_booking', 'my_booking')->name('get_my_bookingbooking');
+    Route::get('change_status/{id?}', 'change_status')->name('change_status');
+});
 Route::controller(CityController::class)->group(function () {
     Route::get('city', 'city')->name('login');
     Route::get('area', 'area')->name('login');

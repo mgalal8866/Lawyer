@@ -10,7 +10,7 @@ class IssueAnswerResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
-        dd($this->user->comments->count());
+     
         $data=[
             'id'         => $this->id??'',
             'reply'      => $this->reply??'',

@@ -15,6 +15,7 @@ class IssueResource extends JsonResource
             'id'        => $this->id ?? '',
             'title'     => $this->title ?? '',
             'body'      => $this->body ?? '',
+            'specialist'      => $this->specialist->name ?? '',
             'offers'    => $this->answer_count != 0 ? number_format($this->answer_count, 0) : '0',
             'status'    => $this->status->getLabelText(),
             'created_at'      => \Carbon\Carbon::parse($this->created_at)->translatedFormat('l j F Y -  H:i a'),

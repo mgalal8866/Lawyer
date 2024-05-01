@@ -58,15 +58,15 @@ class User extends Authenticatable  implements JWTSubject
     }
     public function getImageurlAttribute()
     {
-        $p =  '/files' . '/' ;
+        $p =  '/files' . '/'. 'user/' ;
         $path = asset($p) ;
         if (!File::exists($path)) {
             mkdir($path, 0777, true);
         }
-        return $this->image? $path. '/'. $this->image: path('','').'no-imag.png';
+        return $this->image?path('','user') . $this->image: path('','').'no-imag.png';
 
 
-        return $this->image?path('','category') . $this->image: path('','').'no-imag.png';
+        // return $this->image?path('','category') . $this->image: path('','').'no-imag.png';
     }
     public function getJWTIdentifier()
     {

@@ -7,12 +7,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Resources\LoginUserResource;
 use App\Repositoryinterface\UsersRepositoryinterface;
+use App\Traits\ImageProcessing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class DBUsersRepository implements UsersRepositoryinterface
 {
-
+use ImageProcessing;
     protected Model $model;
     protected $request;
 
@@ -23,7 +24,6 @@ class DBUsersRepository implements UsersRepositoryinterface
     }
     public function credentials($data)
     {
-
         $credentials = [
             'phone' => $data['phone'],
             'password' =>  $data['password'],
@@ -37,7 +37,6 @@ class DBUsersRepository implements UsersRepositoryinterface
         if ($token == null) {
             return Resp('', 'User Not found', 404, false);
         }
-        // $user =  auth('api')->user();
         $user->token = $token;
         $data =  new LoginUserResource($user);
         return Resp($data, 'Success', 200, true);
@@ -88,9 +87,9 @@ class DBUsersRepository implements UsersRepositoryinterface
             // 'image'    => $request->image,
         ]);
         if ($request->image) {
-
-            $user->image = '';
-            $user->save();
+                $dataX = $this->saveImageAndThumbnail($request->image, false, 'user');
+                $user->image =  $dataX['image'];
+               $user->save();
         }
         if ($user != null) {
 
@@ -119,6 +118,9 @@ class DBUsersRepository implements UsersRepositoryinterface
         }
         if ($this->request->has('gender')) {
             $user->gender = $this->request->gender;
+        }
+        if ($this->request->has('description')) {
+            $user->description = $this->request->description;
         }
         $user->save();
         if ($user != null) {

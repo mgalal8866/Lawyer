@@ -15,6 +15,7 @@ class LoginUserResource extends JsonResource
             'id'        => $this->id??'',
             'name'      => $this->name??'',
             'image'     => $this->imageurl??'',
+            'phone'     => $this->phone??'',
             'city_id'   => $this->city_id??'',
             'city'      => $this->city->name??'',
             'area_id'   => $this->area_id??'',

@@ -20,7 +20,7 @@ class BookingResource extends JsonResource
             'lawyer_image'   => $this->lawyer->imageurl??'',
             'answer'     => $this->answer??'',
             'created_at'     => \Carbon\Carbon::parse($this->created_at)->translatedFormat('l j F Y -  H:i a'),
-            'status' => $this->status == 0?'0':$this->status,
+            'status' => $this->status->getLabelText(),
 
         ];
     }

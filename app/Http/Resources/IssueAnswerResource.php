@@ -8,9 +8,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class IssueAnswerResource extends JsonResource
 {
-dd($this->user->comments->count());
     public function toArray(Request $request): array
     {
+        dd($this->user->comments->count());
         $data=[
             'id'         => $this->id??'',
             'reply'      => $this->reply??'',

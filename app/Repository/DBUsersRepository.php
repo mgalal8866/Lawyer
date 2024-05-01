@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 
 class DBUsersRepository implements UsersRepositoryinterface
 {
-use ImageProcessing;
+    use ImageProcessing;
     protected Model $model;
     protected $request;
 
@@ -87,9 +87,9 @@ use ImageProcessing;
             // 'image'    => $request->image,
         ]);
         if ($request->image) {
-                $dataX = $this->saveImageAndThumbnail($request->image, false, 'user');
-                $user->image =  $dataX['image'];
-               $user->save();
+            $dataX = $this->saveImageAndThumbnail($request->image, false, 'user');
+            $user->image =  $dataX['image'];
+            $user->save();
         }
         if ($user != null) {
 
@@ -121,6 +121,10 @@ use ImageProcessing;
         }
         if ($this->request->has('description')) {
             $user->description = $this->request->description;
+        }
+        if ($this->request->has('image')) {
+            $dataX = $this->saveImageAndThumbnail($this->request->image, false, 'user');
+            $user->image =  $dataX['image'];
         }
         $user->save();
         if ($user != null) {

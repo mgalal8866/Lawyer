@@ -22,6 +22,7 @@
                                 <th>{{ __('tran.reply') }}</th>
                                 <th>{{ __('tran.specialist') }}</th>
                                 <th>{{ __('tran.statu') }}</th>
+                                <th>{{ __('tran.action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,9 +45,11 @@
                                     <td>
                                         <span class="fw-bold">{{ $item->specialist->name ?? 'N/A' }}</span>
                                     </td>
-
                                     <td>{!! $item->status->getLabelHtml() !!}</td>
-
+                                    <td>
+                                        <a class="btn btn-info waves-effect waves-float waves-light btn-sm"
+                                        href="{{ route('detailsissue',['id' => $item->id] ) }}">عرض</a>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>

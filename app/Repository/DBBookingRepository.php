@@ -28,6 +28,7 @@ class DBBookingRepository implements BookingRepositoryinterface
         'user_id' => Auth::guard('api')->user()->id,
         'lawyer_id' =>  $this->request->lawyer_id,
         'answer' => $this->request->answer,
+        'description' => $this->request->description,
         'status' => 0,
 
        ]);

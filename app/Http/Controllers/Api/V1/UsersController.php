@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Api\V1;
 
 
+use App\Models\specialist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\LawyerResource;
 use App\Http\Resources\SpecialistsResource;
-use App\Models\specialist;
+use App\Http\Resources\BookingdataLawyerResource;
 use App\Repositoryinterface\UsersRepositoryinterface;
 
 class UsersController extends Controller
@@ -66,7 +67,7 @@ class UsersController extends Controller
     {
         $data =$this->users->lawyer_by_id($id);
         if ($data) {
-           return Resp(new LawyerResource($data), 'success');
+           return Resp(new BookingdataLawyerResource($data), 'success');
         } else {
             return Resp('', 'error',400,false);
         }

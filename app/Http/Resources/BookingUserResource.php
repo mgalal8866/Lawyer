@@ -18,6 +18,7 @@ class BookingUserResource extends JsonResource
             'lawyer_id'      => $this->lawyer_id??'',
             'lawyer_image'   => $this->lawyer->imageurl??'',
             'answer'     => $this->answer??'',
+            'description'     => $this->description??'',
             'created_at'     => \Carbon\Carbon::parse($this->created_at)->translatedFormat('l j F Y -  H:i a'),
             'status' => $this->status->getLabelText(),
 

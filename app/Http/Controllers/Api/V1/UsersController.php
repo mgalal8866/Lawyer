@@ -58,7 +58,7 @@ class UsersController extends Controller
     {
         $data =$this->users->booking_lawyer();
         if ( $data) {
-           return Resp(LawyerResource::collection($data), 'success');
+           return Resp(BookingdataLawyerResource::collection($data), 'success');
         } else {
             return Resp('', 'success',400,false);
         }

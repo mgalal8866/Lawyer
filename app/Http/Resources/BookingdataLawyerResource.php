@@ -16,7 +16,7 @@ class BookingdataLawyerResource extends JsonResource
             'name'      => $this->name??'',
             'image'     => $this->imageurl??'',
             'phone'     => $this->phone??'',
-            'specialist' => $this->specialist_id->name??'',
+            'specialist' => $this->specialist->name??'',
             'description' => $this->description??'',
             'rating'      => ($this->comments->count() > 0) ?number_format($this->comments->sum('rating')/$this->comments->count(),2):'',
         ];

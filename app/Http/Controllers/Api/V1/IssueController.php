@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Api\V1;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\IssueResource;
+use App\Http\Resources\IssueColleResource;
 use App\Http\Resources\IssueLawyerResource;
 use App\Repositoryinterface\IssueRepositoryinterface;
 
@@ -30,7 +31,7 @@ class IssueController extends Controller
     {
         $data = $this->issue->get_all_issue();
         if ($data) {
-            return   Resp(IssueLawyerResource::Collection($data), 'success');
+            return   Resp(IssueColleResource::Collection($data), 'success');
         } else {
             return   Resp('', 'not ', 400);
         }

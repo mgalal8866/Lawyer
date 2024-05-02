@@ -6,6 +6,8 @@ namespace App\Http\Controllers\Api\V1;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BookingResource;
+use App\Http\Resources\BookingUserResource;
+use App\Http\Resources\BookingLawyerResource;
 use App\Repositoryinterface\BookingRepositoryinterface;
 
 class BookingController extends Controller
@@ -20,9 +22,9 @@ class BookingController extends Controller
     {
         $data = $this->booking->new_booking();
         if ($data) {
-            return Resp(new BookingResource($data), 'success');
+            return Resp('', 'success');
         } else {
-            return Resp('', 'success', 400, false);
+            return Resp('', 'error', 400, false);
         }
     }
 
@@ -30,7 +32,7 @@ class BookingController extends Controller
     {
         $data = $this->booking->get_booking();
         if ($data) {
-            return Resp(BookingResource::collection($data), 'success');
+            return Resp(BookingLawyerResource::collection($data), 'success');
         } else {
             return Resp('', 'success', 400, false);
         }
@@ -40,18 +42,19 @@ class BookingController extends Controller
     {
         $data = $this->booking->my_booking();
         if ($data) {
-            return Resp(BookingResource::collection($data), 'success');
+            return Resp(BookingUserResource::collection($data), 'success');
         } else {
-            return Resp('', 'success', 400, false);
+            return Resp('', 'error', 400, false);
         }
     }
+
     public function change_status()
     {
         $data = $this->booking->change_status();
         if ($data) {
-            return Resp(new BookingResource($data), 'success');
+            return Resp(new BookingLawyerResource($data), 'success');
         } else {
-            return Resp('', 'success', 400, false);
+            return Resp('', 'error', 400, false);
         }
     }
 }

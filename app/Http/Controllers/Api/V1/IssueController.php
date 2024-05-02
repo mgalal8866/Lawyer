@@ -31,7 +31,7 @@ class IssueController extends Controller
     {
         $data = $this->issue->get_all_issue();
         if ($data) {
-            return   Resp(IssueColleResource::Collection($data), 'success');
+            return   Resp(IssueLawyerResource::Collection($data), 'success');
         } else {
             return   Resp('', 'not ', 400);
         }
@@ -42,7 +42,7 @@ class IssueController extends Controller
     {
         $data = $this->issue->myissue();
         if ($data) {
-            return   Resp(IssueResource::collection($data), 'success');
+            return   Resp(IssueColleResource::collection($data), 'success');
         } else {
             return   Resp('', 'not ', 400);
         }

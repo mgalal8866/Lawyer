@@ -156,8 +156,8 @@
             <div class="col-lg-4 col-md-6 col-12">
                 <div class="card card-employee-task">
                     <div class="card-header">
-                        <h4 class="card-title">المحامين الاعلى ترتيب فى الرد على القضايا والاسئلة</h4>
-                        <i data-feather="more-vertical" class="font-medium-3 cursor-pointer"></i>
+                        <h6 class="card-title">أعلى 5 محامين فى الرد على القضايا والاسئلة</h6>
+                        {{-- <i data-feather="more-vertical" class="font-medium-1 cursor-pointer"></i> --}}
                     </div>
                     <div class="card-body">
                         @foreach ($data['lawyer_has_max_offers'] as $items)

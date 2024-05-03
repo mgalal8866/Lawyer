@@ -4,9 +4,9 @@
             <div class="card outline-success">
                 <div class="card-header">
                     <h4 class="card-title">{{ __('tran.view') . ' ' . __('tran.notifications') }}</h4>
-                    {{-- <a class="btn btn-primary"  wire:click="$dispatch('edit')">{{ __('tran.send') . ' ' .__('tran.notification') }}</a> --}}
+                    <a class="btn btn-primary"  wire:click="$dispatch('edit')">{{ __('tran.send') . ' ' .__('tran.notification') }}</a>
                 </div>
-
+                @livewire('notification.send-notification')
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -24,7 +24,7 @@
                             @forelse ($notifcations  as $item)
                                 <tr>
                                     <td>
-                                        <span class="fw-bold">{{ $item->user->name ?? 'N/A' }}</span>
+                                        <span class="fw-bold">{{ $item->user->name ?? 'All' }}</span>
                                     </td>
                                     <td>
                                         <span class="fw-bold">{{ $item->title ?? 'N/A' }}</span>
@@ -40,7 +40,7 @@
                                         @endif</span>
                                     </td>
                                     <td>
-                                        <span class="fw-bold">{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('l j F Y -  H:i a')}}</span>
+                                        <span class="fw-bold">{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('l j F Y -  h:i a')}}</span>
                                     </td>
 
 

@@ -22,7 +22,7 @@ use App\Http\Controllers\Auth\UserAdminController;
 |
 */
 Route::middleware('guest:web')->group(function () {
-    Route::get('/login', [UserAdminController::class, 'login'])->name('dashlogin');
+    Route::get('/login', [UserAdminController::class, 'login'])->name('login');
     Route::post('/postlogin', [UserAdminController::class, 'postlogin'])->name('postlogin');
 });
 

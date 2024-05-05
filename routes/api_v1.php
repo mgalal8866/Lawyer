@@ -35,8 +35,8 @@ Route::controller(BookingController::class)->group(function () {
     Route::get('change_status/{id?}', 'change_status')->name('change_status');
 });
 Route::controller(CityController::class)->group(function () {
-    Route::get('city', 'city')->name('login');
-    Route::get('area', 'area')->name('login');
+    Route::get('city', 'city')->name('city');
+    Route::get('area', 'area')->name('area');
 });
 
 Route::controller(CommentsController::class)->group(function () {

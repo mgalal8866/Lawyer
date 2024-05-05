@@ -35,6 +35,7 @@
                  </a>
              </li>
 
+
              <li class=" nav-item">
                  <a class="d-flex align-items-center" href="#">
                      <i class="fas fa-copy"></i>
@@ -110,7 +111,15 @@
 
                  </ul>
              </li>
-
+             <li class=" nav-item ">
+                <a class="dropdown-item" href="{{ route('adminlogout') }}"
+                    onclick="event.preventDefault();
+               document.getElementById('logout-form').submit();">
+                    <i class="me-50" data-feather="power"></i> {{ __('tran.logout') }}</a>
+                <form id="logout-form" action="{{ route('adminlogout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </li>
          </ul>
      </div>
  </div>

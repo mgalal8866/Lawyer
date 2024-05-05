@@ -2,6 +2,11 @@
 
 return [
     'dashboard'       => 'الرئيسية',
+    'password'      => 'الباسورد',
+    'signin'      => 'تسجيل دخول',
+    'logout'      => 'تسجيل خروج',
+    'area'      => 'المنطقة',
+    'rememberme'      => 'تذكرنى! ',
     'viewissue'      => 'عرض القضايا و الاسئلة',
     'issue'      => 'قضية',
     'viewnotification'      => 'عرض الاشعارات',

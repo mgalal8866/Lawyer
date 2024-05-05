@@ -4,7 +4,11 @@
             <div class="card outline-success">
                 <div class="card-header">
                     <h4 class="card-title">{{ __('tran.view') . ' ' . __('tran.lawyers') }}</h4>
-                </div>
+                    <a class="btn btn-primary"
+                    wire:click="$dispatch('edit',{type:1})">{{ __('tran.add') . ' ' .  __('tran.lawyer') }}</a>
+
+            </div>
+            @livewire('users.edit-user')
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -85,6 +89,8 @@
                                         </span>
                                     </td>
                                     <td>
+                                        <a wire:click="$dispatch('edit',{id:'{{ $item->id }}',type:'{{ $item->type }}'})"><i
+                                            class="fas fa-edit fa-lg" style="color: #c2881e;"></i></a>
                                         {{-- <a wire:click="$dispatch('edit',{id:'{{ $item->id }}'})"><i
                                                 class="fas fa-edit fa-lg" style="color: #c2881e;"></i></a>
                                         <a wire:click="delete('{{ $item->id }}')"><i

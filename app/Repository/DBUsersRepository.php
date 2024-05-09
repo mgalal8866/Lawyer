@@ -86,7 +86,10 @@ class DBUsersRepository implements UsersRepositoryinterface
 
     public function signup($request)
     {
-
+        $user =    User::where('phone',$request->phone)->first();
+        if($user!=null){
+            return Resp('', 'الهاتف مسجل سابقا', 402, true);
+        }
         $user =  User::create([
             'name'       => $request->name,
             'phone'      => $request->phone,

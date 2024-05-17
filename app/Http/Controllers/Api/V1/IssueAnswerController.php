@@ -56,5 +56,14 @@ class IssueAnswerController extends Controller
             return   Resp('', 'error', 400);
         }
     }
+    public function my_accept_offer_lawyer()
+    {
+        $data = $this->answer->my_accept_offer_lawyer();
+        if ($data) {
+            return   Resp( AcceptedOffersResource::collection($data), 'success');
+        } else {
+            return   Resp('', 'error', 400);
+        }
+    }
 
 }

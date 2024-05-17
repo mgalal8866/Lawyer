@@ -57,6 +57,18 @@ class DBIssueAnswerRepository implements IssueAnswerRepositoryinterface
     }
     public function my_accept_offer()
     {
+        $data =  $this->model->wherehas('issue', function ($q) {
+            $q->where('user_id', Auth::guard('api')->user()->id);
+        })->where('status', 1)->get();
+        if ($data != null) {
+            return  $data;
+        } else {
+
+            return  false;
+        }
+    }
+    public function my_accept_offer_lawyer()
+    {
         $data =  $this->model->with(['issue'])->where(['user_id' => Auth::guard('api')->user()->id, 'status' => 1])->get();
         if ($data != null) {
             return  $data;

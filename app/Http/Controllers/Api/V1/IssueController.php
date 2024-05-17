@@ -27,6 +27,7 @@ class IssueController extends Controller
             return   Resp('', 'not ', 400);
         }
     }
+    
     public function get_all_issue()
     {
         $data = $this->issue->get_all_issue();
@@ -47,6 +48,7 @@ class IssueController extends Controller
             return   Resp('', 'not ', 400);
         }
     }
+
     public function get_issue_id($id)
     {
 

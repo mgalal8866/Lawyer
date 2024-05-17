@@ -56,6 +56,7 @@ Route::controller(IssueAnswerController::class)->middleware(['jwt.verify'])->gro
     Route::post('answer', 'newanswer')->name('newanswer');
     Route::get('offer/{id?}', 'accept_offer')->name('accept_offer');
     Route::get('my_accepted_offers', 'my_accept_offer')->name('my_accept_offer');
+    Route::get('my_accepted_offers/lawyer', 'my_accept_offer_lawyer')->name('my_accept_offer_lawyer');
 });
 
 Route::controller(NotificationController::class)->middleware(['jwt.verify'])->group(function () {

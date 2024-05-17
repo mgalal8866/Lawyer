@@ -34,6 +34,7 @@
             </ul> --}}
         </div>
         <ul class="nav navbar-nav align-items-center ms-auto">
+
             {{-- <li class="nav-item dropdown dropdown-language">
                 <a class="nav-link dropdown-toggle" id="dropdown-flag" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="flag-icon flag-icon-{{App::getLocale()== 'en' ?'us':'eg'}}"></i><span class="selected-language"> {{ LaravelLocalization::getCurrentLocaleNative() }}</span>
@@ -61,14 +62,14 @@
                             height="40" width="40"><span class="avatar-status-online"></span></span>
                 </a> --}}
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
-                    {{-- <a class="dropdown-item" href="#"><i class="me-50" data-feather="help-circle"></i>
-                        FAQ</a> --}}
-                    {{-- <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    <a class="dropdown-item" href="#"><i class="me-50" data-feather="help-circle"></i>
+                        FAQ</a>
+                    <a class="dropdown-item" href="{{ route('adminlogout') }}" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
                         <i class="me-50" data-feather="power"></i> {{ __('tran.logout')}}</a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    <form id="logout-form" action="{{ route('adminlogout') }}" method="POST" class="d-none">
                         @csrf
-                    </form> --}}
+                    </form>
                 </div>
             </li>
         </ul>

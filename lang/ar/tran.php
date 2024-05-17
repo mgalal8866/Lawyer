@@ -2,6 +2,11 @@
 
 return [
     'dashboard'       => 'الرئيسية',
+    'password'      => 'الباسورد',
+    'signin'      => 'تسجيل دخول',
+    'logout'      => 'تسجيل خروج',
+    'area'      => 'المنطقة',
+    'rememberme'      => 'تذكرنى! ',
     'viewissue'      => 'عرض القضايا و الاسئلة',
     'issue'      => 'قضية',
     'viewnotification'      => 'عرض الاشعارات',
@@ -9,6 +14,10 @@ return [
     'lawyers'      => 'المحامين',
     'lawyer'      => 'المحامى',
     'viewlawyers'      => 'عرض المحامين',
+    'Booking'      => 'الحجوزات',
+    'answer'      => 'الاجابات',
+    'city'      => 'مدينة',
+    'viewbooking'      => 'عرض الحجوزات',
     'issues'      => 'قضايا',
     'viewuser'      => 'عرض المستخدمين',
     'freecourse'      => 'شروحات مجانية',

@@ -7,6 +7,9 @@ use Livewire\Component;
 
 class ViewNotification extends Component
 {
+    protected $listeners = ['notification_refresh'=>'$refresh'];
+
+
     public function render()
     {
         $notifcations = Notification::get();

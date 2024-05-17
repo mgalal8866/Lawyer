@@ -28,15 +28,15 @@ Route::controller(UsersController::class)->group(function () {
     Route::get('booking/lawyer', 'booking_lawyer')->name('booking_lawyer');
 });
 
-Route::controller(BookingController::class)->group(function () {
+    Route::controller(BookingController::class)->group(function () {
     Route::get('get/booking', 'get_booking')->name('get_booking');
     Route::post('new_booking', 'new_booking')->name('new_booking');
     Route::get('my_booking', 'my_booking')->name('get_my_bookingbooking');
     Route::get('change_status/{id?}', 'change_status')->name('change_status');
 });
 Route::controller(CityController::class)->group(function () {
-    Route::get('city', 'city')->name('login');
-    Route::get('area', 'area')->name('login');
+    Route::get('city', 'city')->name('city');
+    Route::get('area', 'area')->name('area');
 });
 
 Route::controller(CommentsController::class)->group(function () {

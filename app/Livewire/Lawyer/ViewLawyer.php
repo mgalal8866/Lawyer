@@ -7,6 +7,7 @@ use Livewire\Component;
 
 class ViewLawyer extends Component
 {
+    protected $listeners = ['user'=>'$refresh'];
     public function render()
     {
         $users=User::whereType(1)->get();

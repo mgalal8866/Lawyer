@@ -40,7 +40,7 @@ class DBIssueRepository implements IssueRepositoryinterface
         $data = $this->model->create($data);
 
         $files = $this->request->file('files');
-
+ 
         if ($files) {
             foreach ($files as $item) {
                 $file =  uploadfile($item, "files/");

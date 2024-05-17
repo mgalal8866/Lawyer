@@ -29,11 +29,12 @@
      <div class="main-menu-content" wire:ignore>
          <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
              <li class=" nav-item ">
-                 <a class="d-flex align-items-center" href="">
+                 <a class="d-flex align-items-center" href="{{ route('main-dashboard') }}">
                      <i data-feather="home"></i>
                      <span class="menu-title text-truncate">{{ __('tran.dashboard') }}</span>
                  </a>
              </li>
+
 
              <li class=" nav-item">
                  <a class="d-flex align-items-center" href="#">
@@ -110,7 +111,15 @@
 
                  </ul>
              </li>
-
+             <li class=" nav-item ">
+                <a class="dropdown-item" href="{{ route('adminlogout') }}"
+                    onclick="event.preventDefault();
+               document.getElementById('logout-form').submit();">
+                    <i class="me-50" data-feather="power"></i> {{ __('tran.logout') }}</a>
+                <form id="logout-form" action="{{ route('adminlogout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </li>
          </ul>
      </div>
  </div>

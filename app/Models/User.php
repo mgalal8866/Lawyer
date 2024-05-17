@@ -3,12 +3,14 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Carbon\Carbon;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\File;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use Tymon\JWTAuth\Contracts\JWTSubject;
-use Illuminate\Support\Facades\File;
+
 class User extends Authenticatable  implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable ;
@@ -56,6 +58,10 @@ class User extends Authenticatable  implements JWTSubject
     {
         return $this->hasMany(Comments::class, 'lawyer_id');
     }
+    public function offers()
+    {
+        return $this->hasMany(IssueOffers::class, 'user_id');
+    }
     public function getImageurlAttribute()
     {
         $p =  '/files' . '/'. 'user/' ;
@@ -76,5 +82,34 @@ class User extends Authenticatable  implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+    public function getIsAdminAttribute()
+    {
+        return $this->roles()->where('title', 'Admin')->exists();
+    }
+
+    public function scopeAdmins()
+    {
+        return $this->whereHas('roles', fn ($q) => $q->where('title', 'Admin'));
+    }
+
+
+    public function getCreatedAtAttribute($value)
+    {
+        return $value ? Carbon::createFromFormat('Y-m-d H:i:s', $value)->format(config('project.datetime_format')) : null;
+    }
+
+    public function getUpdatedAtAttribute($value)
+    {
+        return $value ? Carbon::createFromFormat('Y-m-d H:i:s', $value)->format(config('project.datetime_format')) : null;
+    }
+
+    public function getDeletedAtAttribute($value)
+    {
+        return $value ? Carbon::createFromFormat('Y-m-d H:i:s', $value)->format(config('project.datetime_format')) : null;
     }
 }

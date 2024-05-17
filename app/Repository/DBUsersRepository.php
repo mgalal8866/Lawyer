@@ -86,7 +86,10 @@ class DBUsersRepository implements UsersRepositoryinterface
 
     public function signup($request)
     {
-
+        $check =    User::where('phone',$request->phone)->first();
+        if($check!=null){
+            return Resp('', 'الهاتف مسجل سابقا', 402, false);
+        }
         $user =  User::create([
             'name'       => $request->name,
             'phone'      => $request->phone,
@@ -96,7 +99,7 @@ class DBUsersRepository implements UsersRepositoryinterface
             'specialist_id' => $request->specialist_id,
             'city_id'    => $request->city_id,
             'area_id'    => $request->area_id,
-            'description'    => $request->description,
+            'description'    => $request->description??null,
             // 'image'    => $request->image,
         ]);
         if ($request->image) {

@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\User;
+use App\Models\Issue;
 use App\Enum\StatusOffer;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class IssueOffers extends Model
 {
@@ -20,6 +22,6 @@ class IssueOffers extends Model
     }
     public function issue()
     {
-        return $this->belongsTo(issue::class, 'issue_id');
+        return $this->belongsTo(Issue::class, 'issue_id');
     }
 }

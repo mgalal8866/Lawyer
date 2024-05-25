@@ -138,6 +138,11 @@ class DBUsersRepository implements UsersRepositoryinterface
         if ($this->request->has('description')) {
             $user->description = $this->request->description;
         }
+        if ($this->request->has('password')) {
+            if($this->request->password != ''){
+                $user->password = $this->request->password;
+            }
+        }
         if ($this->request->has('image')) {
             $dataX = $this->saveImageAndThumbnail($this->request->image, false, 'user');
             $user->image =  $dataX['image'];

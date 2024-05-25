@@ -50,6 +50,7 @@ Route::controller(IssueController::class)->middleware(['jwt.verify'])->group(fun
     Route::get('issue/{id?}', 'get_issue_id')->name('myissue');
     Route::get('delete/issue/{id?}', 'delete_issue')->name('delete_issue');
     Route::get('all/issue', 'get_all_issue')->name('get_all_issue');
+    Route::get('all/issue/by_city', 'get_all_issue_by_city')->name('get_all_issue_by_city');
 });
 
 Route::controller(IssueAnswerController::class)->middleware(['jwt.verify'])->group(function () {

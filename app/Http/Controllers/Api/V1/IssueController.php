@@ -27,10 +27,19 @@ class IssueController extends Controller
             return   Resp('', 'not ', 400);
         }
     }
-    
+
     public function get_all_issue()
     {
         $data = $this->issue->get_all_issue();
+        if ($data) {
+            return   Resp(IssueLawyerResource::Collection($data), 'success');
+        } else {
+            return   Resp('', 'not ', 400);
+        }
+    }
+    public function get_all_issue_by_city()
+    {
+        $data = $this->issue->get_all_issue_by_city();
         if ($data) {
             return   Resp(IssueLawyerResource::Collection($data), 'success');
         } else {

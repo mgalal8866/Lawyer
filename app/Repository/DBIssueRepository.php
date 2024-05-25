@@ -40,7 +40,7 @@ class DBIssueRepository implements IssueRepositoryinterface
         $data = $this->model->create($data);
 
         $files = $this->request->file('files');
- 
+
         if ($files) {
             foreach ($files as $item) {
                 $file =  uploadfile($item, "files/");
@@ -74,6 +74,16 @@ class DBIssueRepository implements IssueRepositoryinterface
         $type = $this->request->input('type', '');
         $type = $type == 'issue' ? 1 : 0;
         $data =  $this->model->whereType($type)->get();
+        return  $data;
+    }
+    public function get_all_issue_by_city()
+    {
+        $city_id=  Auth::guard('api')->user()->city_id;
+        $type = $this->request->input('type', '');
+        $type = $type == 'issue' ? 1 : 0;
+        $data =  $this->model->whereType($type)->whereHas('user',function($q)use($city_id){
+            $q->where('city_id',$city_id);
+        })->get();
         return  $data;
     }
     public function get_issue_id($id)

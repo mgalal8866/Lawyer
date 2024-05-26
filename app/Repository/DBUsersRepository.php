@@ -62,14 +62,14 @@ class DBUsersRepository implements UsersRepositoryinterface
     }
     public function booking_lawyer()
     {
-        $data=[];
-        if($this->request->city_id!=null){
-            $data['city_id'] =$this->request->city_id;
+        $data = [];
+        if ($this->request->city_id != null) {
+            $data['city_id'] = $this->request->city_id;
         }
-        if($this->request->area_id!=null){
+        if ($this->request->area_id != null) {
             $data['area_id'] = $this->request->area_id;
         }
-// dd($data);
+        // dd($data);
         $data = User::whereType(1)->where($data)->get();
         return   $data;
     }
@@ -86,8 +86,8 @@ class DBUsersRepository implements UsersRepositoryinterface
 
     public function signup($request)
     {
-        $check =    User::where('phone',$request->phone)->first();
-        if($check!=null){
+        $check =    User::where('phone', $request->phone)->first();
+        if ($check != null) {
             return Resp('', 'الهاتف مسجل سابقا', 402, false);
         }
         $user =  User::create([
@@ -99,7 +99,7 @@ class DBUsersRepository implements UsersRepositoryinterface
             'specialist_id' => $request->specialist_id,
             'city_id'    => $request->city_id,
             'area_id'    => $request->area_id,
-            'description'    => $request->description??null,
+            'description'    => $request->description ?? null,
             // 'image'    => $request->image,
         ]);
         if ($request->image) {
@@ -138,8 +138,11 @@ class DBUsersRepository implements UsersRepositoryinterface
         if ($this->request->has('description')) {
             $user->description = $this->request->description;
         }
+        if ($this->request->has('specialist_id')) {
+            $user->specialist_id = $this->request->specialist_id;
+        }
         if ($this->request->has('password')) {
-            if($this->request->password != ''){
+            if ($this->request->password != '') {
                 $user->password = $this->request->password;
             }
         }

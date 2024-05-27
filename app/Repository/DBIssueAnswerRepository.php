@@ -39,7 +39,7 @@ class DBIssueAnswerRepository implements IssueAnswerRepositoryinterface
 
     public function myanswer()
     {
-        $data =  $this->model->whereUserId(Auth::guard('api')->user()->id)->with(['user', 'user.comments'])->get();
+        $data =  $this->model->whereUserId(Auth::guard('api')->user()->id)->with(['user', 'user.comments'])->orderBy('created_at', 'DESC')->get();
         return  $data;
     }
 
@@ -59,7 +59,7 @@ class DBIssueAnswerRepository implements IssueAnswerRepositoryinterface
     {
         $data =  $this->model->wherehas('issue', function ($q) {
             $q->where(['user_id'=> Auth::guard('api')->user()->id,'type'=>1]);
-        })->where('status', 1)->get();
+        })->where('status', 1)->orderBy('created_at', 'DESC')->get();
         if ($data != null) {
             return  $data;
         } else {
@@ -69,7 +69,7 @@ class DBIssueAnswerRepository implements IssueAnswerRepositoryinterface
     }
     public function my_accept_offer_lawyer()
     {
-        $data =  $this->model->with(['issue'])->where(['user_id' => Auth::guard('api')->user()->id, 'status' => 1])->get();
+        $data =  $this->model->with(['issue'])->where(['user_id' => Auth::guard('api')->user()->id, 'status' => 1])->orderBy('created_at', 'DESC')->get();
         if ($data != null) {
             return  $data;
         } else {

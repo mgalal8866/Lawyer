@@ -22,7 +22,7 @@ class IssueAnswerController extends Controller
     {
         $data = $this->answer->newanswer();
         if ($data) {
-            return   Resp(new IssueAnswerResource($data), 'success');
+            return   Resp(new IssueAnswerResource($data), 'تم الاضافه بنجاح');
         } else {
             return   Resp('', 'not ', 400);
         }

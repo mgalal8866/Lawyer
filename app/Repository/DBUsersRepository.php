@@ -70,7 +70,7 @@ class DBUsersRepository implements UsersRepositoryinterface
             $data['area_id'] = $this->request->area_id;
         }
         // dd($data);
-        $data = User::whereType(1)->where($data)->get();
+        $data = User::whereType(1)->where($data)->orderBy('created_at', 'DESC')->get();
         return   $data;
     }
     public function get_teamwork()

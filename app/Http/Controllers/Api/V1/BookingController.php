@@ -22,7 +22,7 @@ class BookingController extends Controller
     {
         $data = $this->booking->new_booking();
         if ($data) {
-            return Resp('', 'success');
+            return Resp('', 'تم الحجز بنجاح');
         } else {
             return Resp('', 'error', 400, false);
         }
@@ -34,7 +34,7 @@ class BookingController extends Controller
         if ($data) {
             return Resp(BookingLawyerResource::collection($data), 'success');
         } else {
-            return Resp('', 'success', 400, false);
+            return Resp('', 'error', 400, false);
         }
     }
 
@@ -52,7 +52,7 @@ class BookingController extends Controller
     {
         $data = $this->booking->change_status();
         if ($data) {
-            return Resp(new BookingLawyerResource($data), 'success');
+            return Resp(new BookingLawyerResource($data), 'تم تغير الحالة بنجاح');
         } else {
             return Resp('', 'error', 400, false);
         }

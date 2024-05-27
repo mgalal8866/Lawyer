@@ -24,7 +24,7 @@ class CommentsController extends Controller
     {
         $data =$this->Comment->new_comment();
         if ($data) {
-           return Resp(new CommentsResource( $data), 'success');
+           return Resp(new CommentsResource( $data), 'تم اضافه التعليق');
         } else {
             return Resp('', 'error',400,false);
         }

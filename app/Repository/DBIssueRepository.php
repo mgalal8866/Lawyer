@@ -32,7 +32,7 @@ class DBIssueRepository implements IssueRepositoryinterface
             if (Auth::guard('api')->user() < env('POINT',5)) {
                 return   Resp('', 'نقاطك اقل من المطلوب يرجى اعاده شحن النقاط ', 200);
             } else {
-                $point = Auth::guard('api')->user() -  env('POINT');
+                $point = Auth::guard('api')->user()->point -  env('POINT',5);
                 $user = User::find(Auth::guard('api')->user()->id);
                 $user->point = $point;
                 $user->save();

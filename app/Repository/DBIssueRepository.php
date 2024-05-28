@@ -60,7 +60,7 @@ class DBIssueRepository implements IssueRepositoryinterface
             }
         }
         if ($data) {
-            return   Resp(new IssueResource($data), 'success');
+            return   Resp(new IssueResource($data), $type==0?'تم اضافه سؤالك وتم خصم 5 نقاط من رصيد نقاطك ':'تم اضافة القضية بنحجاح');
         } else {
             return   Resp('', 'not ', 400);
         }

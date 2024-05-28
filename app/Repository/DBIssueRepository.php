@@ -26,8 +26,6 @@ class DBIssueRepository implements IssueRepositoryinterface
 
     public function newissue()
     {
-
-
         $type = $this->request->input('type', '');
         $type = $type == 'issue' ? 1 : 0;
         if( $type == 0 ){

@@ -7,6 +7,8 @@ use App\Models\IssueFiles;
 use Illuminate\Http\Request;
 use App\Traits\ImageProcessing;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\IssueResource;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use App\Repositoryinterface\IssueRepositoryinterface;
 
@@ -27,11 +29,23 @@ class DBIssueRepository implements IssueRepositoryinterface
 
 
         $type = $this->request->input('type', '');
+        $type = $type == 'issue' ? 1 : 0;
+        if( $type == 0 ){
+            if (Auth::guard('api')->user() < env('POINT')) {
+                return   Resp('', 'نقاطك اقل من المطلوب يرجى اعاده شحن النقاط ', 200);
+            } else {
+                $point = Auth::guard('api')->user() -  env('POINT');
+                $user = User::find(Auth::guard('api')->user()->id);
+                $user->point = $point;
+                $user->save();
+            }
+        }
+
         $data = [
             'title'         => $this->request->title,
             'body'          => $this->request->body,
             'user_id'       => Auth::guard('api')->user()->id,
-            'type'          => $type == 'issue' ? 1 : 0,
+            'type'          => $type ,
             'status'        => 1
         ];
         if ($this->request->specialist != null) {
@@ -66,8 +80,12 @@ class DBIssueRepository implements IssueRepositoryinterface
     {
         $type = $this->request->input('type', '');
         $type = $type == 'issue' ? 1 : 0;
+
+
+
         $data =  $this->model->withCount(['answer'])->whereType($type)->whereUserId(Auth::guard('api')->user()->id)->orderBy('created_at', 'DESC')->get();
-        return  $data;
+      return  $data;
+
     }
     public function get_all_issue()
     {
@@ -78,11 +96,11 @@ class DBIssueRepository implements IssueRepositoryinterface
     }
     public function get_all_issue_by_city()
     {
-        $city_id=  Auth::guard('api')->user()->city_id;
+        $city_id =  Auth::guard('api')->user()->city_id;
         $type = $this->request->input('type', '');
         $type = $type == 'issue' ? 1 : 0;
-        $data =  $this->model->whereType($type)->whereHas('user',function($q)use($city_id){
-            $q->where('city_id',$city_id);
+        $data =  $this->model->whereType($type)->whereHas('user', function ($q) use ($city_id) {
+            $q->where('city_id', $city_id);
         })->orderBy('created_at', 'DESC')->get();
         return  $data;
     }

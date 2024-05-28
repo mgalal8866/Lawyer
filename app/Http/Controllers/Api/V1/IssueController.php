@@ -20,12 +20,8 @@ class IssueController extends Controller
 
     public function newissue(Request $request)
     {
-        $data = $this->issue->newissue();
-        if ($data) {
-            return   Resp(new IssueResource($data), 'success');
-        } else {
-            return   Resp('', 'not ', 400);
-        }
+        return $this->issue->newissue();
+
     }
 
     public function get_all_issue()

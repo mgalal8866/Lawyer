@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Traits\ImageProcessing;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\IssueResource;
+use App\Models\setting;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use App\Repositoryinterface\IssueRepositoryinterface;
@@ -29,10 +30,11 @@ class DBIssueRepository implements IssueRepositoryinterface
         $type = $this->request->input('type', '');
         $type = $type == 'issue' ? 1 : 0;
         if( $type == 0 ){
-            if (Auth::guard('api')->user()->point < env('POINT',5)) {
+          $set_point=   setting::find(1)->point;
+            if (Auth::guard('api')->user()->point <  $set_point) {
                 return   Resp('', 'نقاطك اقل من المطلوب يرجى اعاده شحن النقاط ', 200);
             } else {
-                $point = Auth::guard('api')->user()->point -  env('POINT',5);
+                $point = Auth::guard('api')->user()->point -   $set_point;
                 $user = User::find(Auth::guard('api')->user()->id);
                 $user->point = $point;
                 $user->save();
@@ -60,7 +62,7 @@ class DBIssueRepository implements IssueRepositoryinterface
             }
         }
         if ($data) {
-            return   Resp(new IssueResource($data), $type==0?'تم اضافه سؤالك وتم خصم 5 نقاط من رصيد نقاطك ':'تم اضافة القضية بنحجاح');
+            return   Resp(new IssueResource($data), $type==0?'تم اضافه سؤالك وتم خصم '. $set_point. ' نقاط من رصيد نقاطك ':'تم اضافة القضية بنحجاح');
         } else {
             return   Resp('', 'not ', 400);
         }

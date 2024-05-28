@@ -12,9 +12,9 @@ enum StatusIssue: int
     public function getLabelText(): string
     {
         return match ($this) {
-            self::unactive  => 'unactive',
-            self::active  => 'active',
-            self::accept  => 'accept',
+            self::unactive  => 'غير نشط',
+            self::active  => 'نشط',
+            self::accept  => 'مقبول',
         };
     }
     public function getLabelColor(): string

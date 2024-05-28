@@ -12,9 +12,9 @@ enum StatusBooking: int
     public function getLabelText(): string
     {
         return match ($this) {
-            self::panding  => 'panding',
-            self::notaccept  => 'notaccept',
-            self::accept  => 'accept',
+            self::panding  => 'جارى',
+            self::notaccept  => 'غير مقبول',
+            self::accept  => 'مقبول',
         };
     }
     public function getLabelColor(): string

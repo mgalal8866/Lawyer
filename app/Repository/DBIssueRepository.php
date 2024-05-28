@@ -59,8 +59,12 @@ class DBIssueRepository implements IssueRepositoryinterface
                 IssueFiles::create(['name' => $file, 'issue_id' => $data->id]);
             }
         }
+        if ($data) {
+            return   Resp(new IssueResource($data), 'success');
+        } else {
+            return   Resp('', 'not ', 400);
+        }
 
-        return $data;
     }
 
     public function delete_issue($id)

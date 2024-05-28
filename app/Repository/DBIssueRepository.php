@@ -29,7 +29,7 @@ class DBIssueRepository implements IssueRepositoryinterface
         $type = $this->request->input('type', '');
         $type = $type == 'issue' ? 1 : 0;
         if( $type == 0 ){
-            if (Auth::guard('api')->user() < env('POINT',5)) {
+            if (Auth::guard('api')->user()->point < env('POINT',5)) {
                 return   Resp('', 'نقاطك اقل من المطلوب يرجى اعاده شحن النقاط ', 200);
             } else {
                 $point = Auth::guard('api')->user()->point -  env('POINT',5);

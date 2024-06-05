@@ -113,7 +113,7 @@
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
-    <script src="{{ asset('vendor/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('asset/vendor/jquery.validate.min.js') }}"></script>
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->

@@ -6,7 +6,9 @@
                     <h4 class="card-title">{{ __('tran.view') . ' ' . __('tran.users') }}</h4>
                     <a class="btn btn-primary"
                         wire:click="$dispatch('edit',{type:0})">{{ __('tran.add') . ' ' .  __('tran.user') }}</a>
-
+                        <div class="mb-1 col-md-2">
+                            <input type="text"  class="form-control" wire:model.live='search'  placeholder="بحث بالاسم او رقم التليفون" />
+                        </div>
                 </div>
                 @livewire('users.edit-user')
                 <div class="table-responsive">

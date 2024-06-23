@@ -4,9 +4,10 @@
             <div class="card outline-success">
                 <div class="card-header">
                     <h4 class="card-title">{{ __('tran.view') . ' ' . __('tran.lawyers') }}</h4>
-                    <a class="btn btn-primary"
-                    wire:click="$dispatch('edit',{type:1})">{{ __('tran.add') . ' ' .  __('tran.lawyer') }}</a>
-
+                    <a class="btn btn-primary"  wire:click="$dispatch('edit',{type:1})">{{ __('tran.add') . ' ' .  __('tran.lawyer') }}</a>
+                    <div class="mb-1 col-md-2">
+                        <input type="text"  class="form-control" wire:model.live='search'  placeholder="بحث بالاسم او رقم التليفون"/>
+                    </div>
             </div>
             @livewire('users.edit-user')
                 <div class="table-responsive">

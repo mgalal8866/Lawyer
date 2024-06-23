@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +14,11 @@ use App\Http\Controllers\Api\V1\CommentsController;
 use App\Http\Controllers\Api\V1\QuestionController;
 use App\Http\Controllers\Api\V1\IssueAnswerController;
 use App\Http\Controllers\Api\V1\NotificationController;
+
+Route::get('gggggggggggggggg',function(){
+
+   
+})->name('booking_lawyer');
 
 Route::controller(UsersController::class)->group(function () {
     Route::prefix('auth')->as('auth.')->group(function(){

@@ -7,21 +7,20 @@ use App\Models\City;
 use App\Models\specialist;
 use App\Models\User;
 use Livewire\Component;
-use Livewire\Attributes\On;
+
 
 class EditUser extends Component
 {
     protected $listeners = ['edit' => 'edit'];
-    public $header, $edit, $id = null, $name, $description, $city_id, $area_id, $gender, $point, $specialist_id, $type, $area = [], $phone;
+    public $password,$header,$accessadmin, $edit, $id = null, $name, $description, $city_id, $area_id, $gender, $point, $specialist_id, $type, $area = [], $phone;
 
 
     public function setEdit($data)
     {
-        dd($data);
-        $replyId = $data['id'];
 
+        $replyId = $data['id'];
     }
-    public function edit($id = null,$type = '0')
+    public function edit($id = null, $type = '0')
     {
 
 
@@ -38,6 +37,7 @@ class EditUser extends Component
             $this->gender            = $tra->gender;
             $this->point             = $tra->point ?? '0.00';
             $this->type              = $tra->type;
+            $this->accessadmin               = $tra->is_admin;
 
             $this->area_id           = $tra->area_id;
 
@@ -47,14 +47,15 @@ class EditUser extends Component
             }
             $this->edit = true;
             // $this->active = $tra->active == 1 ? true : false;
-            // $this->header = __('tran.edit') . ' ' . __('tran.user');
+
+            $this->header =  __('tran.edit') . ' ' .  (($this->type == 0) ? __('tran.user') : __('tran.lawyer'));
 
         } else {
             $this->resetExcept('type');
             $this->edit = false;
+            $this->header =  __('tran.add') . ' ' .  (($this->type == 0) ? __('tran.user') : __('tran.lawyer'));
         }
 
-        $this->header =  __('tran.add') . ' ' .  (($this->type == 0) ? __('tran.user') : __('tran.lawyer'));
         $this->dispatch('openmodel');
     }
     public function updatedCityId($val)
@@ -64,6 +65,7 @@ class EditUser extends Component
     }
     public function save()
     {
+
         $data = [
             'name'       => $this->name,
             'gender'     => $this->gender,
@@ -71,10 +73,12 @@ class EditUser extends Component
             'point'      => $this->point,
             'area_id'    => $this->area_id,
             'city_id'    => $this->city_id,
-            'gender'     => $this->gender,
+
+            'is_admin'     => $this->accessadmin,
         ];
-        if ($this->edit = false) {
+        if ($this->edit == false) {
             $data['phone'] = $this->phone;
+            $data['password'] = $this->password;
         }
         if ($this->type == 1) {
             $data['specialist_id']   = $this->specialist_id;
@@ -82,8 +86,12 @@ class EditUser extends Component
         }
 
         $CFC = User::updateOrCreate(['id' => $this->id], $data);
-
+        if ($this->edit == false) {
+        $this->dispatch('swal', message: 'تم ألاضافة بنجاح');
+    }else{
         $this->dispatch('swal', message: 'تم التعديل بنجاح');
+
+    }
         $this->dispatch('closemodel');
         $this->dispatch('user');
     }

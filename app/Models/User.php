@@ -87,10 +87,10 @@ class User extends Authenticatable  implements JWTSubject
     {
         return $this->belongsToMany(Role::class);
     }
-    public function getIsAdminAttribute()
-    {
-        return $this->roles()->where('title', 'Admin')->exists();
-    }
+    // public function getIsAdminAttribute()
+    // {
+    //     return $this->roles()->where('title', 'Admin')->exists();
+    // }
 
     public function scopeAdmins()
     {

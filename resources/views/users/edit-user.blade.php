@@ -20,11 +20,23 @@
                         </div>
                         <div class=" col-md-6">
                             <label class="form-label" for="modalEditUserFirstphone">{{ __('tran.phone') }}</label>
-                            <input type="number" class="form-control" wire:model="phone"  @if (!$edit) required @else  readonly @endif />
+                            <input type="number" class="form-control" wire:model="phone"
+                                @if (!$edit) required @else  readonly @endif />
                             @error('phone')
                                 <span class="error" style="color: red">{{ $message }}</span>
                             @enderror
                         </div>
+                        @if ($edit == false)
+                            <div class=" col-md-6">
+                                <label class="form-label"
+                                    for="modalEditUserFirstpassword">{{ __('tran.password') }}</label>
+                                <input type="number" class="form-control" wire:model="password"
+                                    @if (!$edit) required @else  readonly @endif />
+                                @error('password')
+                                    <span class="error" style="color: red">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        @endif
                         <div class=" col-md-4">
                             <label class="form-label" for="modalEditUserFirstpoint">{{ __('tran.point') }}</label>
                             <input type="number" class="form-control" wire:model="point" required />
@@ -62,14 +74,16 @@
                             <select class="form-select" wire:model="area_id" required>
                                 <option value=""> {{ __('tran.select') . ' ' . __('tran.area') }}</option>
                                 {{-- @if (!empty($area_id)) --}}
-                                    @foreach ($area as $item)
-                                        <option  @if  (!empty($area_id)) {{$area_id == $item->id ?'selected':'' }}   @endif value="{{ $item->id }}">{{ $item->name }}</option>
-                                    @endforeach
-                                    {{-- @endif --}}
-                                </select>
-                                @error('area_id')
-                                    <span class="error" style="color: red">{{ $message }}</span>
-                                @enderror
+                                @foreach ($area as $item)
+                                    <option
+                                        @if (!empty($area_id)) {{ $area_id == $item->id ? 'selected' : '' }} @endif
+                                        value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
+                                {{-- @endif --}}
+                            </select>
+                            @error('area_id')
+                                <span class="error" style="color: red">{{ $message }}</span>
+                            @enderror
                         </div>
                         @if ($type == 1)
                             <div class=" col-md-12">
@@ -95,7 +109,18 @@
                                 @enderror
                             </div>
                         @endif
+                        <div class=" col-md-4">
+                            <label class="form-label" for="modalEditUserFirstName">{{ __('tran.accessadmin') }}</label>
+                            <select class="form-select" wire:model="accessadmin" required>
+                                <option value="0"> {{ __('tran.user') }}</option>
+                                <option value="1"> {{ __('tran.admin') }}</option>
 
+
+                            </select>
+                            @error('city_id')
+                                <span class="error" style="color: red">{{ $message }}</span>
+                            @enderror
+                        </div>
                         <div class="col-12 text-center mt-2 pt-50">
                             <button type="submit" class="btn btn-primary me-1">{{ __('tran.save') }}</button>
                             <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
@@ -134,5 +159,3 @@
         });
     </script>
 @endpush
-
-

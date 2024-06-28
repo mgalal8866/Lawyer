@@ -27,7 +27,7 @@ Route::middleware('guest:web')->group(function () {
     Route::post('/postlogin', [UserAdminController::class, 'postlogin'])->name('postlogin');
 });
 
-Route::middleware('auth:web')->group(function () {
+Route::middleware(['auth:web'])->group(function () {
     Route::get('/', Main::class)->name('main-dashboard');
     Route::post('/logout', [UserAdminController::class, 'adminlogout'])->name('adminlogout');
     Route::get('/issue/details/{id?}', DetailsIssue::class)->name('detailsissue');

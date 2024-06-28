@@ -44,6 +44,8 @@ trait AuthenticatesUsers
         }
 
         if ($this->attemptLogin($request)) {
+
+
             if ($request->hasSession()) {
                 $request->session()->put('auth.password_confirmed_at', time());
             }
@@ -55,7 +57,7 @@ trait AuthenticatesUsers
         // to login and redirect the user back to the login form. Of course, when this
         // user surpasses their maximum number of attempts they will get locked out.
         $this->incrementLoginAttempts($request);
-
+dd('');
         return $this->sendFailedLoginResponse($request);
     }
 

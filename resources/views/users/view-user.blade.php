@@ -82,10 +82,10 @@
                                         <a wire:click="$dispatch('edit',{id:'{{ $item->id }}',type:'{{ $item->type }}'})"><i
                                                 class="fas fa-edit fa-lg" style="color: #c2881e;"></i></a>
                                         {{-- <a wire:click="delete('{{ $item->id }}')"><i
-                                                class="fas fa-trash-alt fa-lg " style="color: #ff0000;"></i></a>
+                                                class="fas fa-trash-alt fa-lg " style="color: #ff0000;"></i></a> --}}
                                         <a wire:click="activetoggle('{{ $item->id }}')"> <i
                                                 class="fas {{ $item->active == 1 ? 'fas fa-eye' : 'fa-eye-slash' }} fa-lg "
-                                                style="{{ $item->active == 1 ? 'color: #1caa0f;' : '' }}"></i></a> --}}
+                                                style="{{ $item->active == 1 ? 'color: #1caa0f;' : '' }}"></i></a>
                                     </td>
                                 </tr>
                                 @empty

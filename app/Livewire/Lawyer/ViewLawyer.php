@@ -9,6 +9,17 @@ class ViewLawyer extends Component
 {
     protected $listeners = ['user'=>'$refresh'];
     public $search;
+
+    public function activetoggle($id)
+    {
+        $CC = User::find($id);
+        if($CC->active == 1){
+            $CC->update(['active' => 0 ]);
+        }
+        else{
+            $CC->update(['active'=>1]);
+        }
+    }
     public function render()
     {
 

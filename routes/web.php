@@ -10,6 +10,7 @@ use App\Livewire\Booking\ViewBooking;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Notification\ViewNotification;
 use App\Http\Controllers\Auth\UserAdminController;
+use App\Livewire\Setting;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,9 +32,10 @@ Route::middleware('auth:web')->group(function () {
     Route::post('/logout', [UserAdminController::class, 'adminlogout'])->name('adminlogout');
     Route::get('/issue/details/{id?}', DetailsIssue::class)->name('detailsissue');
     Route::get('/user/view', ViewUser::class)->name('view-user');
-    Route::get('/issue/view', ViewIssue::class)->name('view-issue');
+    Route::get('/issue/view' , ViewIssue::class)->name('view-issue');
     Route::get('/booking/view', ViewBooking::class)->name('view-booking');
     Route::get('/lawyer/view', ViewLawyer::class)->name('view-lawyer');
-    Route::get('/notification/view', ViewNotification::class)->name('view-notification');
+    Route::get('/no tification/view', ViewNotification::class)->name('view-notification');
+    Route::get('/setting', Setting::class)->name('setting');
 });
 

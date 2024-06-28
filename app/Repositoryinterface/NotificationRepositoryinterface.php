@@ -5,6 +5,7 @@ interface NotificationRepositoryinterface{
 
 
     public function get_my_notification();
+    public function checkactive();
 
 
 }

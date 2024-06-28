@@ -28,4 +28,11 @@ class DBNotificationRepository implements NotificationRepositoryinterface
         return $data;
     }
 
+    public function checkactive()
+    {
+
+        $data =Auth::guard('api')->user()->active;
+        return $data;
+    }
+
  }

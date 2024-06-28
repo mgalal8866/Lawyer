@@ -1,24 +1,15 @@
 <?php
 
-use App\Models\User;
-use App\Models\Booking;
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Cookie;
-use Stevebauman\Location\Facades\Location;
 use App\Http\Controllers\Api\V1\CityController;
 use App\Http\Controllers\Api\V1\IssueController;
 use App\Http\Controllers\Api\V1\UsersController;
 use App\Http\Controllers\Api\V1\BookingController;
 use App\Http\Controllers\Api\V1\CommentsController;
-use App\Http\Controllers\Api\V1\QuestionController;
 use App\Http\Controllers\Api\V1\IssueAnswerController;
 use App\Http\Controllers\Api\V1\NotificationController;
 
-Route::get('gggggggggggggggg',function(){
-
-   
-})->name('booking_lawyer');
 
 Route::controller(UsersController::class)->group(function () {
     Route::prefix('auth')->as('auth.')->group(function(){
@@ -68,6 +59,7 @@ Route::controller(IssueAnswerController::class)->middleware(['jwt.verify'])->gro
 
 Route::controller(NotificationController::class)->middleware(['jwt.verify'])->group(function () {
 
+    Route::get('checkactive', 'checkactive')->name('checkactive');
     Route::get('notification', 'get_my_notification')->name('notification');
 });
 

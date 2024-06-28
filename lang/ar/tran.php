@@ -13,6 +13,7 @@ return [
     'read'      => 'قراءه',
     'lawyers'      => 'المحامين',
     'lawyer'      => 'المحامى',
+    'pointd'      => 'سحب النقاط',
     'viewlawyers'      => 'عرض المحامين',
     'Booking'      => 'الحجوزات',
     'answer'      => 'الاجابات',

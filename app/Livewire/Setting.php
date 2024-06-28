@@ -11,14 +11,14 @@ class Setting extends Component
     public function save()
     {
         $set = ModelsSetting::find(1);
-        $set->price = $this->price_point;
+        $set->point = $this->price_point;
         $set->save();
         $this->dispatch('swal', message: 'تم التعديل بنجاح');
     }
 
     public function render()
     {  $set = ModelsSetting::find(1);
-        $this->price_point =$set->price ;
+        $this->price_point =$set->point ;
         return view('setting');
     }
 }

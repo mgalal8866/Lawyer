@@ -120,6 +120,12 @@
                     @csrf
                 </form>
             </li>
+             <li class=" nav-item ">
+                <a class="d-flex align-items-center" href="{{ route('setting') }}">
+                    <i data-feather="circle"></i>
+                    <span class="menu-item text-truncate">{{ __('tran.pointd') }}</span>
+                </a>
+            </li>
          </ul>
      </div>
  </div>

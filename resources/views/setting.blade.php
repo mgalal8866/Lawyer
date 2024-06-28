@@ -7,7 +7,7 @@
             <form class="row" wire:submit.prevent="save()">
 
                 <div class=" col-md-6">
-                    <label class="form-label" for="price_point">{{ __('tran.price_point') }}</label>
+                    <label class="form-label" for="price_point">{{ __('tran.pointd') }}</label>
                     <input type="text" class="form-control"
                         wire:model="price_point" required />
                     @error('price_point')

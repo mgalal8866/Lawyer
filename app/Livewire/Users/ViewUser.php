@@ -8,7 +8,7 @@ use Livewire\Component;
 class ViewUser extends Component
 {
     protected $listeners = ['user'=>'$refresh'];
-
+    public $search;
     public function render()
     {
         $query = User::where('type', 0);

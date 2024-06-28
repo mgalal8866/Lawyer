@@ -20,7 +20,7 @@
                         </div>
                         <div class=" col-md-6">
                             <label class="form-label" for="modalEditUserFirstphone">{{ __('tran.phone') }}</label>
-                            <input type="text" class="form-control" wire:model="phone"  @if (!$edit) required @else  readonly @endif />
+                            <input type="number" class="form-control" wire:model="phone"  @if (!$edit) required @else  readonly @endif />
                             @error('phone')
                                 <span class="error" style="color: red">{{ $message }}</span>
                             @enderror

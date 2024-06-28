@@ -17,7 +17,8 @@ class Setting extends Component
     }
 
     public function render()
-    {
+    {  $set = ModelsSetting::find(1);
+        $this->price_point =$set->price ;
         return view('setting');
     }
 }

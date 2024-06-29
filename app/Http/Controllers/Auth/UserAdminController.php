@@ -23,11 +23,13 @@ class UserAdminController extends Controller
         ]);
 
         Auth::guard('web')->attempt(['phone' => $request->phone, 'password' => $request->password], $request->get('remember'));
-        if (Auth::guard('web')->user()->is_admin == 0) {
-            Auth::guard('web')->logout();
+        if (Auth::guard('web')->user()) {
+            if (Auth::guard('web')->user()->is_admin == 0) {
+                Auth::guard('web')->logout();
 
-            $request->session()->invalidate();
-            return back()->withInput($request->only('phone', 'remember'))->withErrors(['error' => 'لاتملك الصلاحية للوصول للوحة التحكم']);;
+                $request->session()->invalidate();
+                return back()->withInput($request->only('phone', 'remember'))->withErrors(['error' => 'لاتملك الصلاحية للوصول للوحة التحكم']);;
+            }
         }
         if (Auth::guard('web')->attempt(['phone' => $request->phone, 'password' => $request->password], $request->get('remember'))) {
 

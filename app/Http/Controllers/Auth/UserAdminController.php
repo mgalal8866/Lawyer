@@ -36,7 +36,7 @@ class UserAdminController extends Controller
 
             return redirect()->intended('/');
         }
-        return back()->withInput($request->only('phone', 'remember'));
+        return back()->withInput($request->only('phone', 'remember'))->withErrors(['error' => 'يرجى التحقق من الايميل او الهاتف']);
     }
     public function adminlogout(Request $request)
     {
